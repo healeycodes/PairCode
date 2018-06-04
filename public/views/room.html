@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <title><%-title-%></title>
+    <link rel="stylesheet" type="text/css" href="/css/pair-code.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" integrity="sha256-ji09tECORKvr8xB9iCl8DJ8iNMLriDchC1+p+yt1hSs=" crossorigin="anonymous"></script>
+    <script src="/js/room.js"></script>
+  </head>
+  <body>
+    <div id="menu" roomid="<%-roomId-%>">Test Test Test Test Test Test </div>
+    <iframe id="live-frame" srcdoc=""></iframe>
+    <div id="user-code">
+        <section id="html"><textarea placeholder="HTML"></textarea></section>
+        <section id="css"><textarea placeholder="CSS"></textarea></section>
+        <section id="js"><textarea placeholder="JS"></textarea></section>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+* {
+  margin:0;
+  padding:0;  
+}
+
+body, html {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+#user-code {
+  width: 25%;
+  float: left;
+}
+
+#live-frame {
+  height: 95%;
+  width: 74.5%;
+  float: right;
+  border: none;
+}
+
+section {
+  float: right;
+  height: 33.3%;
+  position: absolute;
+  width: 24.75%;
+}
+
+textarea {
+  height: 97.5%;
+  width: 100%;
+  resize: none
+}
+
+#js {
+    bottom: 0;
+}
+
+#css {
+    top: 33.3%;
+}
+
+#html {
+    top: 0;
+}
+
+#menu {
+  top: 0;
+  height: 5%;
+  float: right;
+}
