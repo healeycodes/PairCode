@@ -31,31 +31,29 @@ app.get('/', (req, res) => {
 // Create room
 app.get('/new-room', (req, res) => {
     const roomID = rndID()
-    let nsp = io.of('/' + roomID);
-    nsp.on('connection', (socket) => {console.log(socket.client.id + ' connected to #' + roomID)
-        socket.on('update', (updateContent) => {
-            console.log(updateContent)
-            nsp.emit('update', updateContent)
-        })
-    })
-    console.log('created room #' + roomID)
+    // Check if room exists..
     res.redirect('/room/' + roomID)
 })
 
 // Join room
 app.get('/room/:roomId', (req, res) => {
-    if (true) { // If room exists req.params.roomId
-        res.render('room.html', {title: 'Pear Code', roomId: req.params.roomId})
-    }
+    res.render('room.html', {title: 'Pear Code', roomId: req.params.roomId})
 })
 
-// Debugging
+// Socket.IO
 io.on('connection', (socket) => {
     console.log(socket.client.id + ' connected ')
-    socket.on('disconnect', () => {
-        console.log(socket.client.id + ' disconnected ')
+    socket.on('join-room', (msg) => {
+        console.log(`${socket.id} joined ${msg.roomId}`)
+        socket.join(msg.roomId);
+    })
+    socket.on('update', (msg) => {
+        console.log(`${msg.data.html} ${msg.data.css} ${msg.data.js} `)
+        // sending to all clients in 'game' room(channel) except sender
+        socket.broadcast.to(msg.roomId).emit('update', msg.data);
     })
 })
+
 
 http.listen(port, () => {
     console.log(`listening on ${port}`)

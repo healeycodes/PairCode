@@ -1,3 +1,5 @@
+let roomId = "not_set"
+
 const page = {
     html: "",
     css: "",
@@ -9,66 +11,62 @@ const user = {
 }
 
 // roomId#id Example: "/b886a9a534e9d70a0dcd#jGXix0kTpzaJx-mJAAAC";
-const setId = (id) => user.id = id.split("#")[1];
+const setId = (id) => user.id = id;
 
 // Update iframe
 const cycleFrame = () => $("#live-frame").attr("srcdoc", page.html + "<style>" + page.css + "</style>"
 + "<script>" + page.js + "</script>");
 
 // Update user code
-const setUserCode = (updateContent) => {
-    $("#html textarea").val(updateContent.html);
-    $("#css textarea").val(updateContent.css);
-    $("#js textarea").val(updateContent.js);
+const setUserCode = (msg) => {
+    $("#html textarea").val(msg.html);
+    $("#css textarea").val(msg.css);
+    $("#js textarea").val(msg.js);
 }
 
 // Checks whether the recieved content is the same as our page
-const checkIfNew = (updateContent) => {
+const checkIfNew = (msg) => {
     let doCycle = false;
-    if (updateContent.html != page.html) {
-        page.html = updateContent.html;
+    if (msg.html != page.html) {
+        page.html = msg.html;
         doCycle = true;
     }
-    if (updateContent.css != page.css) {
-        page.css = updateContent.css;
+    if (msg.css != page.css) {
+        page.css = msg.css;
         doCycle = true;
     }
-    if (updateContent.js != page.js) {
-        page.js = updateContent.js;
+    if (msg.js != page.js) {
+        page.js = msg.js;
         doCycle = true;
     }
     if (doCycle) {
-        setUserCode(updateContent);
+        setUserCode(msg);
         cycleFrame();
     }
 }
 
 $(document).ready(function() {
 
+    roomId = $("#menu").attr("roomid") // store roomId
+
     // Socket.IO
-    const socket = io("localhost:3000/" + $("#menu").attr("roomid"));
+    const socket = io();
+    socket.emit('join-room', {roomId: roomId}); // join room
 
     $(function () {
-        // Store user ID
         socket.on('connect', () => {
             console.log('connected..');
             setId(socket.id);
         });
 
-        socket.on("update", (updateContent) => {
-            console.log(updateContent);
-            if (user.id == "not_set") {
-                setId(socket.id);
-            }
-            // If this update did not originate from ourselves
-            if (updateContent.id != user.id) {
-                checkIfNew(updateContent);
-            }
+        socket.on("update", (msg) => {
+            console.log(msg);
+            checkIfNew(msg);
         });
     });
 
     // Listen to all three textareas
-    $("textarea").bind("change keyup input paste", () => {
+    $("textarea").bind("change keypress input textInput paste", () => {
         let html = $("#html textarea").val();
         let css = $("#css textarea").val();
         let js = $("#js textarea").val();
@@ -86,7 +84,7 @@ $(document).ready(function() {
         cycleFrame();
 
         // Share our data to the room
-        socket.emit("update", {id: user.id, html: html, css: css, js: js}, );
+        socket.emit("update", {data: {id: user.id, html: html, css: css, js: js}, roomId: roomId});
       });
 
 });
