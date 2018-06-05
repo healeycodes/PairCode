@@ -3,7 +3,14 @@ let roomId = "not_set"
 const page = {
     html: "",
     css: "",
-    js: ""
+    js: "",
+    getPage: function(){
+        return {
+            html: this.html,
+            css: this.css,
+            js: this.js
+        }
+    }
 }
 
 const user = {
@@ -86,6 +93,22 @@ $(document).ready(function() {
         // Share our data to the room
         socket.emit("update", {data: {id: user.id, html: html, css: css, js: js}, roomId: roomId});
       });
+
+      // Create save button logic
+      $("#save-btn").click(() => {
+        $.ajax({
+            type: "POST",
+            url: "/room/" + roomId + "/save",
+            // Send the latest copy of this user's code
+            data: JSON.stringify( page.getPage() ),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function(data) {$("#last-saved").text(" " + data)},
+            failure: function(errMsg) {
+                alert(errMsg);
+            }
+        });
+      })
 
 });
 

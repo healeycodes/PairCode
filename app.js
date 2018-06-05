@@ -1,26 +1,26 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const ejs = require('ejs').renderFile
 const app = express()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 
-// Listen on..
+//
 const port = 3000
+const url = "http://lowlatencycoding.com/"
 
 // Helper functions
-const rndID = () => require('crypto').randomBytes(10).toString('hex');
-
-// Socket.IO config
-// Load, etc.
+const rndID = () => require('crypto').randomBytes(10).toString('hex')
 
 // Express config
-app.use(express.static(__dirname + '/public/'));
-app.use('/img', express.static(__dirname + 'public/img'));
-app.use('/js', express.static(__dirname + 'public/js'));
-app.use('/css', express.static(__dirname + 'public/css'));
-app.set('views', __dirname + '/public/views');
-app.engine('html', ejs);
-app.set('view engine', 'html');
+app.use(express.static(__dirname + '/public/'))
+app.use('/img', express.static(__dirname + 'public/img'))
+app.use('/js', express.static(__dirname + 'public/js'))
+app.use('/css', express.static(__dirname + 'public/css'))
+app.set('views', __dirname + '/public/views')
+app.engine('html', ejs)
+app.set('view engine', 'html')
+app.use(bodyParser.json())
 
 // Home Page
 app.get('/', (req, res) => {
@@ -31,13 +31,19 @@ app.get('/', (req, res) => {
 // Create room
 app.get('/new-room', (req, res) => {
     const roomID = rndID()
-    // Check if room exists..
     res.redirect('/room/' + roomID)
 })
 
 // Join room
 app.get('/room/:roomId', (req, res) => {
-    res.render('room.html', {title: 'Pear Code', roomId: req.params.roomId})
+    res.render('room.html', {title: 'Pear Code', roomId: req.params.roomId, roomLink: url + req.params.roomId})
+})
+
+// Save room
+app.post('/room/:roomId/save', (req, res) => {
+    json = req.body
+    console.log(json)
+    res.send(JSON.stringify(new Date().toISOString().replace('T', ' ').substr(0, 19)))
 })
 
 // Socket.IO

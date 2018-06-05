@@ -1,19 +1,53 @@
 <!doctype html>
 <html>
-  <head>
-    <title><%-title-%></title>
-    <link rel="stylesheet" type="text/css" href="/css/pair-code.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" integrity="sha256-ji09tECORKvr8xB9iCl8DJ8iNMLriDchC1+p+yt1hSs=" crossorigin="anonymous"></script>
-    <script src="/js/room.js"></script>
-  </head>
-  <body>
-    <div id="menu" roomid="<%-roomId-%>">Test Test Test Test Test Test </div>
-    <iframe id="live-frame" srcdoc=""></iframe>
-    <div id="user-code">
-        <section id="html"><textarea placeholder="HTML"></textarea></section>
-        <section id="css"><textarea placeholder="CSS"></textarea></section>
-        <section id="js"><textarea placeholder="JS"></textarea></section>
+
+<head>
+  <title>
+    <%-title-%>
+  </title>
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/pair-code.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" integrity="sha256-ji09tECORKvr8xB9iCl8DJ8iNMLriDchC1+p+yt1hSs="
+    crossorigin="anonymous"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/room.js"></script>
+</head>
+
+<body>
+  <div id="menu" roomid="<%-roomId-%>">
+    <div class="row">
+      <div class="col-sm">
+        <h3>Low Latency Coding</h3>
+      </div>
+      <div class="col-sm">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Share</span>
+          </div>
+          <input type="text" class="form-control form-control-sm" value="<%-roomLink-%>" disabled>
+        </div>
+      </div>
+      <div class="col-sm">
+        <div id="save-btn-div">
+          <button id="save-btn" class="btn btn-primary pull-right">Save</button><span id="last-saved"></span>
+        </div>
+      </div>
     </div>
-  </body>
+  </div>
+  <iframe id="live-frame" srcdoc=""></iframe>
+  <div id="user-code">
+    <section id="html">
+      <textarea placeholder="HTML"></textarea>
+    </section>
+    <section id="css">
+      <textarea placeholder="CSS"></textarea>
+    </section>
+    <section id="js">
+      <textarea placeholder="JS"></textarea>
+    </section>
+  </div>
+</body>
+
 </html>
