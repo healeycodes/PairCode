@@ -31,20 +31,20 @@ app.get('/', (req, res) => {
 
 // Create room
 app.get('/new-room', (req, res) => {
-    const roomid = rndID()
+    const newRoomId = rndID()
     let newRoom = models.Room.create({
-        roomid: roomid,
+        roomid: newRoomId,
         html: "",
         css: "",
         js: ""
     })
-        .then(() => res.redirect('/room/' + roomid))
+        .then(() => res.redirect('/room/' + newRoomId))
         .catch(error => console.log(error))
 })
 
 // Join room
 app.get('/room/:roomId', (req, res) => {
-    // Room should always be in DB, if error send to error page
+    // Room should always be in DB, if not then send to error page
     models.Room.findOne({ where: { roomid: req.params.roomId } }).then(room => {
         if (room) {
             res.render('room.html', {
@@ -77,6 +77,27 @@ app.post('/room/:roomId/save', (req, res) => {
     )
         // Send timestamp
         .then(res.send(JSON.stringify(new Date().toISOString().replace('T', ' ').substr(0, 19))))
+        .catch(error => console.log(error))
+})
+
+// Fork room
+app.get('/room/:roomId/fork', (req, res) => {
+    const newRoomId = rndID()
+    // Room should always be in DB, if not then send to error page
+    models.Room.findOne({ where: { roomid: req.params.roomId } }).then(room => {
+        if (room) {
+            let newRoom = models.Room.create({
+                roomid: newRoomId,
+                html: String(room.html),
+                css: String(room.css),
+                js: String(room.js)
+            })
+                .then(() => res.redirect('/room/' + newRoomId))
+                .catch(error => console.log(error))
+        } else {
+            // Send to error page
+        }
+    })
         .catch(error => console.log(error))
 })
 

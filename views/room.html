@@ -18,8 +18,10 @@
 <body>
   <div id="menu" roomid="<%-roomId-%>">
     <div class="row">
-      <div class="col-sm">
-        <h3><%-title-%></h3>
+      <div id="title-div">
+        <h3>
+          <%-title-%>&nbsp;&nbsp;
+        </h3>
       </div>
       <div class="col-sm">
         <div class="input-group">
@@ -30,9 +32,12 @@
         </div>
       </div>
       <div class="col-sm">
-        <div id="save-btn-div">
-          <span id="last-saved"></span><button id="fork-btn" class="btn btn-primary">Fork</button>
+        <div id="last-saved-con">
+          <span id="last-saved"></span>
         </div>
+      </div>
+      <div id="fork-btn-con" class="col-sm">
+          <button id="fork-btn" class="btn btn-primary">Fork Room</button>
       </div>
     </div>
   </div>

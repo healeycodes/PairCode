@@ -7,7 +7,7 @@ const page = {
     css: "",
     js: "",
     lastSaved: "",
-    getPage: function(){
+    getPage: function () {
         return {
             html: this.html,
             css: this.css,
@@ -25,7 +25,7 @@ const setId = (id) => user.id = id;
 
 // Update iframe
 const cycleFrame = () => $("#live-frame").attr("srcdoc", page.html + "<style>" + page.css + "</style>"
-+ "<script>" + page.js + "</script>");
+    + "<script>" + page.js + "</script>");
 
 // Update user code
 const setUserCode = (msg) => {
@@ -55,21 +55,24 @@ const checkIfNew = (msg) => {
     }
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     roomId = $("#menu").attr("roomid") // store roomId
 
+    // Create fork button
+    $("#fork-btn").click(function () { window.location = "/room/" + roomId + "/fork" });
+
     // Create autosave Web Worker
-    if (typeof(autosave) == "undefined") {
+    if (typeof (autosave) == "undefined") {
         autosave = new Worker("/js/autosave.js");
-        autosave.onmessage = function(event) {
+        autosave.onmessage = function (event) {
             $("#last-saved").text("Last saved @ " + event.data);
         };
-        autosave.postMessage({roomId: roomId})
+        autosave.postMessage({ roomId: roomId })
     }
 
     // Socket.IO
     const socket = io();
-    socket.emit('join-room', {roomId: roomId}); // join room
+    socket.emit('join-room', { roomId: roomId }); // join room
 
     $(function () {
         socket.on('connect', () => {
@@ -100,27 +103,27 @@ $(document).ready(function() {
         cycleFrame();
 
         // Share our data to the room
-        socket.emit("update", {data: {id: user.id, html: html, css: css, js: js}, roomId: roomId});
+        socket.emit("update", { data: { id: user.id, html: html, css: css, js: js }, roomId: roomId });
 
         // Send data to be saved
-        autosave.postMessage({html: html, css: css, js: js});
-      });
+        autosave.postMessage({ html: html, css: css, js: js });
+    });
 
-      // Create fork button logic
-      $("#fork-btn").click(() => {
+    // Create fork button logic
+    $("#fork-btn").click(() => {
         $.ajax({
             type: "POST",
             url: "/room/" + roomId + "/save",
             // Send the latest copy of this user's code
-            data: JSON.stringify( page.getPage() ),
+            data: JSON.stringify(page.getPage()),
             contentType: "application/json; charset=utf-8",
             dataType: "json",
-            success: function(data) {$("#last-saved").text(" " + data)},
-            failure: function(errMsg) {
+            success: function (data) { $("#last-saved").text(" " + data) },
+            failure: function (errMsg) {
                 alert(errMsg);
             }
         });
-      })
-      
+    })
+
 });
 

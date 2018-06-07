@@ -57,12 +57,16 @@ textarea {
   padding: 0.25%;
 }
 
+#last-saved-con {
+  text-align: right;
+}
+
 #last-saved {
   line-height: 35px;
 }
 
-#fork-btn {
-  float: right;
+#fork-btn-con {
+  text-align: center;
 }
 
 .row {
@@ -89,4 +93,8 @@ textarea {
 ::placeholder { /* Generic */
   color: aliceblue;
   padding: 1%;
+}
+
+div.col-sm {
+  padding: 0%;
 }
