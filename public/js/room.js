@@ -1,9 +1,12 @@
-let roomId = "not_set"
+let autosave;
+
+let roomId = "not_set";
 
 const page = {
     html: "",
     css: "",
     js: "",
+    lastSaved: "",
     getPage: function(){
         return {
             html: this.html,
@@ -53,8 +56,16 @@ const checkIfNew = (msg) => {
 }
 
 $(document).ready(function() {
-
     roomId = $("#menu").attr("roomid") // store roomId
+
+    // Create autosave Web Worker
+    if (typeof(autosave) == "undefined") {
+        autosave = new Worker("/js/autosave.js");
+        autosave.onmessage = function(event) {
+            $("#last-saved").text("Last saved @ " + event.data);
+        };
+        autosave.postMessage({roomId: roomId})
+    }
 
     // Socket.IO
     const socket = io();
@@ -62,12 +73,10 @@ $(document).ready(function() {
 
     $(function () {
         socket.on('connect', () => {
-            console.log('connected..');
             setId(socket.id);
         });
 
         socket.on("update", (msg) => {
-            console.log(msg);
             checkIfNew(msg);
         });
     });
@@ -92,10 +101,13 @@ $(document).ready(function() {
 
         // Share our data to the room
         socket.emit("update", {data: {id: user.id, html: html, css: css, js: js}, roomId: roomId});
+
+        // Send data to be saved
+        autosave.postMessage({html: html, css: css, js: js});
       });
 
-      // Create save button logic
-      $("#save-btn").click(() => {
+      // Create fork button logic
+      $("#fork-btn").click(() => {
         $.ajax({
             type: "POST",
             url: "/room/" + roomId + "/save",
@@ -109,6 +121,6 @@ $(document).ready(function() {
             }
         });
       })
-
+      
 });
 

@@ -19,7 +19,7 @@
   <div id="menu" roomid="<%-roomId-%>">
     <div class="row">
       <div class="col-sm">
-        <h3>Low Latency Coding</h3>
+        <h3><%-title-%></h3>
       </div>
       <div class="col-sm">
         <div class="input-group">
@@ -31,21 +31,21 @@
       </div>
       <div class="col-sm">
         <div id="save-btn-div">
-          <button id="save-btn" class="btn btn-primary pull-right">Save</button><span id="last-saved"></span>
+          <span id="last-saved"></span><button id="fork-btn" class="btn btn-primary">Fork</button>
         </div>
       </div>
     </div>
   </div>
-  <iframe id="live-frame" srcdoc=""></iframe>
+  <iframe id="live-frame" srcdoc="<%-srcdoc-%>"></iframe>
   <div id="user-code">
     <section id="html">
-      <textarea placeholder="HTML"></textarea>
+      <textarea placeholder="HTML"><%-html-%></textarea>
     </section>
     <section id="css">
-      <textarea placeholder="CSS"></textarea>
+      <textarea placeholder="CSS"><%-css-%></textarea>
     </section>
     <section id="js">
-      <textarea placeholder="JS"></textarea>
+      <textarea placeholder="JS"><%-js-%></textarea>
     </section>
   </div>
 </body>

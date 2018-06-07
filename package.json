@@ -1,12 +1,14 @@
 {
-    "name": "socket-chat-example",
+    "name": "pear-code",
     "version": "0.0.1",
-    "description": "my first socket.io app",
+    "description": "Real time pair coding.",
     "dependencies": {
         "body-parser": "^1.18.3",
         "ejs": "^2.6.1",
         "express": "^4.16.3",
+        "pg": "^7.4.3",
         "sequelize": "^4.37.10",
+        "sequelize-cli": "^4.0.0",
         "socket.io": "^2.1.1",
         "supertest": "^3.1.0"
     },

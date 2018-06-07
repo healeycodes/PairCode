@@ -57,12 +57,12 @@ textarea {
   padding: 0.25%;
 }
 
-#save-btn-div {
-  text-align:center;
+#last-saved {
+  line-height: 35px;
 }
 
-#save-btn {
-
+#fork-btn {
+  float: right;
 }
 
 .row {

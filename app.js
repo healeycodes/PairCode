@@ -5,9 +5,11 @@ const app = express()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 
-//
-const port = 3000
-const url = "http://lowlatencycoding.com/"
+// Url
+const url = "http://pear-code.com/"
+
+// Database
+const models = require('./models')
 
 // Helper functions
 const rndID = () => require('crypto').randomBytes(10).toString('hex')
@@ -17,33 +19,65 @@ app.use(express.static(__dirname + '/public/'))
 app.use('/img', express.static(__dirname + 'public/img'))
 app.use('/js', express.static(__dirname + 'public/js'))
 app.use('/css', express.static(__dirname + 'public/css'))
-app.set('views', __dirname + '/public/views')
+app.set('views', __dirname + '/views')
 app.engine('html', ejs)
 app.set('view engine', 'html')
 app.use(bodyParser.json())
 
 // Home Page
 app.get('/', (req, res) => {
-    // res.render('index.html', {title: 'Pear Code'})
     res.send('Hello World!')
 })
 
 // Create room
 app.get('/new-room', (req, res) => {
-    const roomID = rndID()
-    res.redirect('/room/' + roomID)
+    const roomid = rndID()
+    let newRoom = models.Room.create({
+        roomid: roomid,
+        html: "",
+        css: "",
+        js: ""
+    })
+        .then(() => res.redirect('/room/' + roomid))
+        .catch(error => console.log(error))
 })
 
 // Join room
 app.get('/room/:roomId', (req, res) => {
-    res.render('room.html', {title: 'Pear Code', roomId: req.params.roomId, roomLink: url + req.params.roomId})
+    // Room should always be in DB, if error send to error page
+    models.Room.findOne({ where: { roomid: req.params.roomId } }).then(room => {
+        if (room) {
+            res.render('room.html', {
+                title: 'Pear Code',
+                roomId: req.params.roomId,
+                roomLink: url + req.params.roomId,
+                html: String(room.html),
+                css: String(room.css),
+                js: String(room.js),
+                srcdoc: String(room.html) + "<style>" + String(room.css) + "</style>"
+                    + "<script>" + String(room.js) + "</script>"
+            })
+        } else {
+            // Send to error page
+        }
+    })
+        .catch(error => console.log(error))
 })
 
 // Save room
 app.post('/room/:roomId/save', (req, res) => {
-    json = req.body
-    console.log(json)
-    res.send(JSON.stringify(new Date().toISOString().replace('T', ' ').substr(0, 19)))
+    const json = req.body
+    models.Room.update(
+        {
+            html: json.html,
+            css: json.css,
+            js: json.js
+        },
+        { where: { roomid: req.params.roomId } }
+    )
+        // Send timestamp
+        .then(res.send(JSON.stringify(new Date().toISOString().replace('T', ' ').substr(0, 19))))
+        .catch(error => console.log(error))
 })
 
 // Socket.IO
@@ -55,12 +89,13 @@ io.on('connection', (socket) => {
     })
     socket.on('update', (msg) => {
         console.log(`${msg.data.html} ${msg.data.css} ${msg.data.js} `)
-        // sending to all clients in 'game' room(channel) except sender
-        socket.broadcast.to(msg.roomId).emit('update', msg.data);
+        socket.broadcast.to(msg.roomId).emit('update', msg.data); // send to all clients in 'game' room(channel) except sender
     })
 })
 
-
-http.listen(port, () => {
-    console.log(`listening on ${port}`)
-})
+// Listen
+models.sequelize.sync().then(function () {
+    http.listen(process.env.PORT || 3000, () => {
+        console.log(`listening on ${process.env.PORT || 3000}`)
+    })
+});
