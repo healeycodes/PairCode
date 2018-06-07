@@ -103,14 +103,19 @@ app.get('/room/:roomId/fork', (req, res) => {
 
 // Socket.IO
 io.on('connection', (socket) => {
-    console.log(socket.client.id + ' connected ')
+    // console.log(socket.client.id + ' connected ')
     socket.on('join-room', (msg) => {
-        console.log(`${socket.id} joined ${msg.roomId}`)
+        // console.log(`${socket.id} joined ${msg.roomId}`)
         socket.join(msg.roomId);
     })
     socket.on('update', (msg) => {
-        console.log(`${msg.data.html} ${msg.data.css} ${msg.data.js} `)
-        socket.broadcast.to(msg.roomId).emit('update', msg.data); // send to all clients in 'game' room(channel) except sender
+        // console.log(`${msg.data.html} ${msg.data.css} ${msg.data.js} `)
+        // send to all clients in 'game' room(channel) except sender
+        socket.broadcast.to(msg.roomId).emit('update', msg.data);
+    })
+    socket.on('_ping', (msg) => {
+        const roomCount = io.sockets.adapter.rooms[msg.roomId].length;
+        socket.emit('_pong', {time: msg.time, roomCount: roomCount})
     })
 })
 

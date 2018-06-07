@@ -65,7 +65,7 @@ $(document).ready(function () {
     if (typeof (autosave) == "undefined") {
         autosave = new Worker("/js/autosave.js");
         autosave.onmessage = function (event) {
-            $("#last-saved").text("Last saved @ " + event.data);
+            $("#last-saved").text("Autosaved @ " + event.data);
         };
         autosave.postMessage({ roomId: roomId })
     }
@@ -81,6 +81,10 @@ $(document).ready(function () {
 
         socket.on("update", (msg) => {
             checkIfNew(msg);
+        });
+
+        socket.on("_pong", (msg) => {
+            $("#ping").text(`${msg.roomCount} in room / ping: ${Date.now() - msg.time}ms`);
         });
     });
 
@@ -125,5 +129,12 @@ $(document).ready(function () {
         });
     })
 
+    // Pings the server every five seconds
+    // Also returns room count
+    ping = () => {
+        socket.emit("_ping", {time: Date.now(), roomId: roomId, roomCount: null});
+        setTimeout("ping()", 5000);
+    }
+    ping();
 });
 

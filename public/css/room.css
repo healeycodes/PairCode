@@ -7,6 +7,13 @@ body, html {
   height: 100%;
   width: 100%;
   position: relative;
+  font-family: 'Open Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto', sans-serif;
 }
 
 #user-code {
@@ -26,13 +33,13 @@ section {
   height: 33.3%;
   position: absolute;
   width: 24.75%;
+  font-family: 'Source Code Pro', monospace;
 }
 
 textarea {
   height: 97.5%;
   width: 100%;
   resize: none;
-  font-size: 1.1em;
   background-color: darkslategray;
   color: aliceblue;
   padding: 1%;
@@ -67,6 +74,12 @@ textarea {
 
 #fork-btn-con {
   text-align: center;
+}
+
+#ping {
+  float: right;
+  line-height: 35px;
+  margin-right: 5px;
 }
 
 .row {
