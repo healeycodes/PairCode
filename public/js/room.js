@@ -18,9 +18,9 @@ const page = {
     lastSaved: "",
     getPage: () => {
         return {
-            html: this.html,
-            css: this.css,
-            js: this.js
+            html: page.html,
+            css: page.css,
+            js: page.js
         }
     }
 }
