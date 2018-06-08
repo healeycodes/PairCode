@@ -19,6 +19,7 @@ app.use(express.static(__dirname + '/public/'))
 app.use('/img', express.static(__dirname + 'public/img'))
 app.use('/js', express.static(__dirname + 'public/js'))
 app.use('/css', express.static(__dirname + 'public/css'))
+app.use('/favicon.ico', express.static(__dirname + 'public/favicon.ico'));
 app.set('views', __dirname + '/views')
 app.engine('html', ejs)
 app.set('view engine', 'html')
@@ -26,7 +27,7 @@ app.use(bodyParser.json())
 
 // Home Page
 app.get('/', (req, res) => {
-    res.send('Hello World!')
+    res.render('index.html')
 })
 
 // Create room
@@ -80,6 +81,17 @@ app.post('/room/:roomId/save', (req, res) => {
         .catch(error => console.log(error))
 })
 
+// Delete room
+app.get('/room/:roomId/delete', (req, res) => {
+    const roomId = req.params.roomId;
+    models.Room.destroy({
+        where: { roomid: roomId },
+        force: true
+    })
+        .then(res.redirect('/'))
+        .catch(error => console.log(error))
+})
+
 // Fork room
 app.get('/room/:roomId/fork', (req, res) => {
     const newRoomId = rndID()
@@ -103,19 +115,29 @@ app.get('/room/:roomId/fork', (req, res) => {
 
 // Socket.IO
 io.on('connection', (socket) => {
-    // console.log(socket.client.id + ' connected ')
     socket.on('join-room', (msg) => {
-        // console.log(`${socket.id} joined ${msg.roomId}`)
-        socket.join(msg.roomId);
+        if (msg.roomId) {
+            socket.join(msg.roomId);
+        }
     })
     socket.on('update', (msg) => {
-        // console.log(`${msg.data.html} ${msg.data.css} ${msg.data.js} `)
-        // send to all clients in 'game' room(channel) except sender
-        socket.broadcast.to(msg.roomId).emit('update', msg.data);
+        if (msg.roomId && msg.data) {
+            socket.broadcast.to(msg.roomId).emit('update', msg.data);
+        }
     })
     socket.on('_ping', (msg) => {
-        const roomCount = io.sockets.adapter.rooms[msg.roomId].length;
-        socket.emit('_pong', {time: msg.time, roomCount: roomCount})
+        let room
+        if (msg.roomId) {
+            room = io.sockets.adapter.rooms[msg.roomId]
+        }
+        let roomCount
+        // Check for undefined room, e.g., if the pinger just left
+        if (room) {
+            roomCount = room.length
+        } else {
+            roomCount = 0
+        }
+        socket.emit('_pong', { time: msg.time, roomCount: roomCount })
     })
 })
 

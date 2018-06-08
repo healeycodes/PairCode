@@ -16,6 +16,10 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Roboto', sans-serif;
 }
 
+#header {
+  margin-right: 18px;
+}
+
 #user-code {
   width: 25%;
   float: left;
@@ -40,8 +44,8 @@ textarea {
   height: 97.5%;
   width: 100%;
   resize: none;
-  background-color: darkslategray;
-  color: aliceblue;
+  background-color: #2f4f4f;
+  color: #f0f8ff;
   padding: 1%;
 }
 
@@ -87,24 +91,24 @@ textarea {
 }
 
 ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: aliceblue;
+  color: #f0f8ff;
   padding: 1%;
 }
 ::-moz-placeholder { /* Firefox 19+ */
-  color: aliceblue;
+  color: #f0f8ff;
   padding: 1%;
 }
 :-ms-input-placeholder { /* IE 10+ */
-  color: aliceblue;
+  color: #f0f8ff;
   padding: 1%;
 }
 :-moz-placeholder { /* Firefox 18- */
-  color: aliceblue;
+  color: #f0f8ff;
   padding: 1%;
 }
 
 ::placeholder { /* Generic */
-  color: aliceblue;
+  color: #f0f8ff;
   padding: 1%;
 }
 

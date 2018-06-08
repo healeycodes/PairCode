@@ -113,7 +113,7 @@ $(document).ready(function () {
         autosave.postMessage({ html: html, css: css, js: js });
     });
 
-    // Create fork button logic
+    // Fork button logic
     $("#fork-btn").click(() => {
         $.ajax({
             type: "POST",
@@ -126,8 +126,14 @@ $(document).ready(function () {
             failure: function (errMsg) {
                 alert(errMsg);
             }
-        });
+        })
     })
+
+    // Delete button logic
+    $("#delete-btn").click(() => window.location.replace("/room/" + roomId + "/delete"))
+
+    // Home "button"
+    $("#home-btn").click(() => window.location.assign("/"))
 
     // Pings the server every five seconds
     // Also returns room count
