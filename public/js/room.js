@@ -1,6 +1,7 @@
 /*
  * room.js
- * The front end client code for Pear Code
+ * The client code for Pear Code
+ * Front end: Bootstrap, HTML, CSS, ES6 JavaScript
  */
 
 // The autosave Web Worker

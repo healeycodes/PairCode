@@ -1,3 +1,10 @@
+/*
+ * app.js
+ * The application logic for Pear Code
+ * Back end: Node.js, Express with EJS, Sequelize (PostgreSQL)
+ * Testing: Jest
+ */
+
 const express = require('express')
 const bodyParser = require('body-parser')
 const ejs = require('ejs').renderFile
