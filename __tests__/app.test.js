@@ -30,3 +30,24 @@ describe('Testing room server-side render', () => {
             })
     })
 })
+
+describe('Testing database integration', () => {
+    beforeAll(() => {
+        return require('../models').sequelize.sync();
+    })
+    beforeEach(() => {
+        this.Room = require('../models').Room;
+    })
+    describe('A room is created during this route', () => {
+        it('Creates a Room', () => {
+            return request(app).get('/new-room')
+                .then(res => {
+                    return request(app).get(res.header.location)
+                        .then(roomRes => {
+                            this.Room.findOne({ where: { roomid: res.header.location.split("/")[2] } })
+                                .then(room => expect(room).not.toBeNull())
+                        })
+                })
+        })
+    })
+})
