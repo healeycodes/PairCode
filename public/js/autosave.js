@@ -1,18 +1,30 @@
-let roomId;
+/*
+ * autosave.js
+ * A Web Worker to autosave the Room's data to the database
+ */
 
+// Save every X ms
+const saveTime = 500
+
+// This room's ID, unique
+let roomId = "not_set";
+
+// The last data we saved, used to reduce update calls
 const lastSave = {
     html: "",
     css: "",
     js: ""
 }
 
+// Current page data
 const currentData = {
     html: "",
     css: "",
     js: ""
 }
 
-self.addEventListener("message", function (e) {
+// Communication from main thread
+self.addEventListener("message", (e) => {
     // Store roomId, sent during setup
     if (e.data.roomId) {
         roomId = e.data.roomId;
@@ -24,7 +36,8 @@ self.addEventListener("message", function (e) {
     }
 }, false);
 
-function timedSave() {
+// Time looped save function
+const timedSave = () => {
     // What we will reply to the main thread
     let response = "";
     // Store data to be saved in case currentData updates during the POST and there's a desync
@@ -40,7 +53,7 @@ function timedSave() {
         xmlhttp.open("POST", "/room/" + roomId + "/save");
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.send(JSON.stringify(dataToBeSaved));
-        xmlhttp.onreadystatechange = function () {
+        xmlhttp.onreadystatechange = () => {
             if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
                 lastSave.html = dataToBeSaved.html;
                 lastSave.css = dataToBeSaved.css;
@@ -48,12 +61,12 @@ function timedSave() {
                 // Reply to the main thread
                 postMessage(JSON.parse(xmlhttp.responseText));
                 // Check again later
-                setTimeout("timedSave()", 500);
+                setTimeout("timedSave()", saveTime);
             }
         }
     } else {
-        // Check again later
-        setTimeout("timedSave()", 500);
+        // Check again later for new data
+        setTimeout("timedSave()", saveTime);
     }
 }
 
