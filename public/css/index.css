@@ -1,0 +1,41 @@
+
+body, html {
+    font-family: 'Open Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #2f4f4f;
+    color: #f0f8ff;
+  }
+
+  #main {
+    width: 500px;
+    height: 500px;
+
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    margin: auto;
+ }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  #heading {
+      margin-bottom: 20px;
+  }
+
+  .small-text {
+    font-size: .9em;
+    float: right;
+  }
+
+  #create-room-con {
+    text-align: center;
+  }
+
+  
+

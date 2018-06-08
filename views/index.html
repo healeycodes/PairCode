@@ -1,31 +1,29 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-  <head>
-    <title><%-title-%></title>
-    <link rel="stylesheet" type="text/css" href="css/pair-code.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js" integrity="sha256-ji09tECORKvr8xB9iCl8DJ8iNMLriDchC1+p+yt1hSs=" crossorigin="anonymous"></script>
-    <script src="js/pairCode.js"></script>
-  </head>
-  <body>
-    <iframe id="live-frame" srcdoc=""></iframe>
-    <div id="user-code">
-        <section id="html"><textarea placeholder="HTML"></textarea></section>
-        <section id="css"><textarea placeholder="CSS"></textarea></section>
-        <section id="js"><textarea placeholder="JS"></textarea></section>
-    </div>
-    <script>
-      $(function () {
-        var socket = io();
-        $('form').submit(function(){
-          socket.emit('chat message', $('#m').val());
-          $('#m').val('');
-          return false;
-        });
-        socket.on('chat message', function(msg){
-          $('#messages').append($('<li>').text(msg));
-        });
-      });
-    </script>
-  </body>
+
+<head>
+  <title>Pear Code</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/index.css">
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+  <div id="main">
+    <h3 id="heading">Pear Code</h3>
+    <p>HTML/CSS/JS sandbox with real time collaboration.</p>
+    <p>Instant code and preview updates for the room.</p>
+    <p></p>
+    <p id="create-room-con">
+      <button id="create-room-btn" type="button" class="btn btn-light btn-lg">Create Room</button>
+    </p>
+    <p class="small-text"><i>"For when other tooling just feels laggy."</i></p>
+  </div>
+  <script>
+    $("#create-room-btn").click(() => window.location.replace("/new-room"))
+  </script>
+</body>
+
 </html>
