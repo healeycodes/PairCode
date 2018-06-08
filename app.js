@@ -12,8 +12,8 @@ const app = express()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 
-// Url
-const url = "http://pear-code.com/"
+// Website Url
+const url = "pear-code.com/"
 
 // Database
 const models = require('./models')
@@ -54,22 +54,23 @@ app.get('/new-room', (req, res) => {
 // Join room
 app.get('/room/:roomId', (req, res) => {
     // Room should always be in DB, if not then send to error page
-    models.Room.findOne({ where: { roomid: req.params.roomId } }).then(room => {
-        if (room) {
-            res.render('room.html', {
-                title: 'Pear Code',
-                roomId: req.params.roomId,
-                roomLink: url + req.params.roomId,
-                html: String(room.html),
-                css: String(room.css),
-                js: String(room.js),
-                srcdoc: String(room.html) + "<style>" + String(room.css) + "</style>"
-                    + "<script>" + String(room.js) + "</script>"
-            })
-        } else {
-            errorPage(res, "No room by that ID.")
-        }
-    })
+    models.Room.findOne({ where: { roomid: req.params.roomId } })
+        .then(room => {
+            if (room) {
+                res.render('room.html', {
+                    title: 'Pear Code',
+                    roomId: req.params.roomId,
+                    roomLink: url + req.params.roomId,
+                    html: String(room.html),
+                    css: String(room.css),
+                    js: String(room.js),
+                    srcdoc: String(room.html) + "<style>" + String(room.css) + "</style>"
+                        + "<script>" + String(room.js) + "</script>"
+                })
+            } else {
+                errorPage(res, "No room by that ID.")
+            }
+        })
         .catch(error => console.log(error))
 })
 
@@ -104,20 +105,21 @@ app.get('/room/:roomId/delete', (req, res) => {
 app.get('/room/:roomId/fork', (req, res) => {
     const newRoomId = rndID()
     // Room should always be in DB, if not then send to error page
-    models.Room.findOne({ where: { roomid: req.params.roomId } }).then(room => {
-        if (room) {
-            let newRoom = models.Room.create({
-                roomid: newRoomId,
-                html: String(room.html),
-                css: String(room.css),
-                js: String(room.js)
-            })
-                .then(() => res.redirect('/room/' + newRoomId))
-                .catch(error => console.log(error))
-        } else {
-            errorPage(res, "Trying to fork an unknown room.")
-        }
-    })
+    models.Room.findOne({ where: { roomid: req.params.roomId } })
+        .then(room => {
+            if (room) {
+                let newRoom = models.Room.create({
+                    roomid: newRoomId,
+                    html: String(room.html),
+                    css: String(room.css),
+                    js: String(room.js)
+                })
+                    .then(() => res.redirect('/room/' + newRoomId))
+                    .catch(error => console.log(error))
+            } else {
+                errorPage(res, "Trying to fork an unknown room.")
+            }
+        })
         .catch(error => console.log(error))
 })
 

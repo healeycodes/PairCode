@@ -1,7 +1,7 @@
 {
     "name": "pear-code",
     "version": "0.0.1",
-    "description": "Real time pair coding.",
+    "description": "A tool for real time pair coding.",
     "dependencies": {
         "body-parser": "^1.18.3",
         "ejs": "^2.6.1",
@@ -13,9 +13,9 @@
         "supertest": "^3.1.0"
     },
     "scripts": {
-        "test": "jest"
+        "test": "jest --forceExit"
     },
     "devDependencies": {
-        "jest": "^23.0.1"
+        "jest": "^23.1.0"
     }
 }
