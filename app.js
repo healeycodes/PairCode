@@ -58,7 +58,7 @@ app.get('/room/:roomId', (req, res) => {
         .then(room => {
             if (room) {
                 res.render('room.html', {
-                    title: 'Pair Code',
+                    title: 'Deux Codes',
                     roomId: req.params.roomId,
                     roomLink: url + req.params.roomId,
                     html: String(room.html),

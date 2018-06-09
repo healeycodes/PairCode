@@ -122,23 +122,6 @@ $(document).ready(() => {
         autosave.postMessage({ html: html, css: css, js: js })
     })
 
-    // Fork button logic
-    $("#fork-btn").click(() => {
-        $.ajax({
-            type: "POST",
-            url: `/room/${roomId}/save`,
-
-            // Send the latest copy of this user's code
-            data: JSON.stringify(page.getPage()),
-            contentType: "application/json; charset=utf-8",
-            dataType: "json",
-            success: (data) => { $("#last-saved").text(` ${data}`) },
-            failure: (errMsg) => {
-                alert(errMsg)
-            }
-        })
-    })
-
     // Delete button logic
     $("#delete-btn").click(() => window.location.replace(`/room/${roomId}/delete`))
 
