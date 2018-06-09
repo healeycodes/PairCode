@@ -1,6 +1,7 @@
 describe('models/room', () => {
     beforeAll(() => {
-        return require('../models').sequelize.sync()
+        const models = require('../models')
+        models.sequelize.sync()
     })
 
     beforeEach(() => {

@@ -1,6 +1,6 @@
 /*
  * app.js
- * The application logic for Pear Code
+ * The application logic for Deux Codes
  * Back end: Node.js, Express with EJS, Sequelize (PostgreSQL)
  * Testing: Jest
  */
@@ -11,9 +11,6 @@ const ejs = require('ejs').renderFile
 const app = express()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
-
-// Website Url
-const url = "pair-code.com/"
 
 // Database
 const models = require('./models')
@@ -32,13 +29,16 @@ app.engine('html', ejs)
 app.set('view engine', 'html')
 app.use(bodyParser.json())
 
-// Home Page
+// Website Url
+const url = "deuxcodes.com/"
+
+// GET: Home Page
 app.get('/', (req, res) => res.render('main.html', { popup: "" }))
 
 // Error Page
 const errorPage = (res, error = "Unspecified error.") => res.render('main.html', { popup: error })
 
-// Create room
+// GET: Create room
 app.get('/new-room', (req, res) => {
     const newRoomId = rndID()
     let newRoom = models.Room.create({
@@ -51,7 +51,7 @@ app.get('/new-room', (req, res) => {
         .catch(error => console.log(error))
 })
 
-// Join room
+// GET: Join room
 app.get('/room/:roomId', (req, res) => {
     // Room should always be in DB, if not then send to error page
     models.Room.findOne({ where: { roomid: req.params.roomId } })
@@ -74,7 +74,7 @@ app.get('/room/:roomId', (req, res) => {
         .catch(error => console.log(error))
 })
 
-// Save room
+// POST: Save room
 app.post('/room/:roomId/save', (req, res) => {
     const json = req.body
     models.Room.update(
@@ -90,7 +90,7 @@ app.post('/room/:roomId/save', (req, res) => {
         .catch(error => console.log(error))
 })
 
-// Delete room
+// GET: Delete room
 app.get('/room/:roomId/delete', (req, res) => {
     const roomId = req.params.roomId
     models.Room.destroy({
@@ -101,7 +101,7 @@ app.get('/room/:roomId/delete', (req, res) => {
         .catch(error => console.log(error))
 })
 
-// Fork room
+// GET: Fork room
 app.get('/room/:roomId/fork', (req, res) => {
     const newRoomId = rndID()
     // Room should always be in DB, if not then send to error page
