@@ -1,10 +1,10 @@
 describe('models/room', () => {
     beforeAll(() => {
-        return require('../models').sequelize.sync();
+        return require('../models').sequelize.sync()
     })
 
     beforeEach(() => {
-        this.Room = require('../models').Room;
+        this.Room = require('../models').Room
     })
 
     describe('Create', () => {

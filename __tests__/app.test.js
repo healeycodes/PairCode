@@ -16,17 +16,19 @@ describe('Testing new-room path', () => {
 
 describe('Testing new-room forward', () => {
     test('The URL should contain \'room\'', () => {
-        return request(app).get('/new-room')
-            .then(res => { expect(res.header.location).toMatch(/room/) })
+        request(app).get('/new-room')
+            .then(res => {
+                return expect(res.header.location).toMatch(/room/)
+            })
     })
 })
 
 describe('Testing room server-side render', () => {
     test('The page should contain the room\'s ID', () => {
-        return request(app).get('/new-room')
-            .then(res => {
-                return request(app).get(res.header.location)
-                    .then(roomRes => { expect(roomRes.text).toMatch(new RegExp(res.header.location.split("/")[2])) })
+        request(app).get('/new-room')
+            .then(res => request(app).get(res.header.location))
+            .then(roomRes => {
+                return expect(roomRes.text).toMatch(new RegExp(res.header.location.split("/")[2]))
             })
     })
 })
@@ -40,13 +42,11 @@ describe('Testing database integration', () => {
     })
     describe('A room is created during this route', () => {
         it('Creates a Room', () => {
-            return request(app).get('/new-room')
-                .then(res => {
-                    return request(app).get(res.header.location)
-                        .then(roomRes => {
-                            this.Room.findOne({ where: { roomid: res.header.location.split("/")[2] } })
-                                .then(room => expect(room).not.toBeNull())
-                        })
+            request(app).get('/new-room')
+                .then(res => request(app).get(res.header.location))
+                .then(roomRes => this.Room.findOne({ where: { roomid: res.header.location.split("/")[2] } }))
+                .then(room => {
+                    return expect(room).not.toBeNull()
                 })
         })
     })

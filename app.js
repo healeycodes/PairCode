@@ -13,7 +13,7 @@ const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 
 // Website Url
-const url = "pear-code.com/"
+const url = "pair-code.com/"
 
 // Database
 const models = require('./models')
@@ -58,7 +58,7 @@ app.get('/room/:roomId', (req, res) => {
         .then(room => {
             if (room) {
                 res.render('room.html', {
-                    title: 'Pear Code',
+                    title: 'Pair Code',
                     roomId: req.params.roomId,
                     roomLink: url + req.params.roomId,
                     html: String(room.html),
