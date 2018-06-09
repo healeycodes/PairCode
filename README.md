@@ -10,4 +10,4 @@ Tested with Jest and SuperTest.
 
 1. Edit `"test"` in `config/config.json` and put in your PostgreSQL server details.
 
-2. Simply run `npm test` in the main directory.
+2. Simply run `npm test` in the top level directory.
