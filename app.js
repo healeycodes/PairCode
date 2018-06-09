@@ -27,6 +27,7 @@ app.use('/favicon.ico', express.static(__dirname + 'public/favicon.ico'))
 app.set('views', __dirname + '/views')
 app.engine('html', ejs)
 app.set('view engine', 'html')
+app.use(bodyParser.json({limit: '100mb', type: 'application/json'}))
 app.use(bodyParser.json())
 
 // Website Url

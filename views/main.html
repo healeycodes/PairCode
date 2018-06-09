@@ -3,7 +3,7 @@
 
 <head>
   <title>Deux Codes</title>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/css/main.css">
   <script src="/js/jquery.min.js"></script>
@@ -12,31 +12,26 @@
 
 <body>
   <div id="main">
-    <div id="centered">
-      <%if (popup) {%>
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <%if (popup) {%>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
           <strong>Error:</strong>
           <%-popup-%>
             <button type="button" class="close" data-dismiss="alert">
               <span>&times;</span>
             </button>
         </div>
-        <%}%>
-          <h3 id="heading">Deux Codes</h3>
-          <p>HTML/CSS/JS sandbox with real time collaboration.</p>
-          <p>Instant code and preview updates for the whole team.</p>
-          <p>Low latency remote pair programming powered by
-            <a href="https://socket.io/">Socket.IO.</a>
-          </p>
-          <p></p>
-          <p id="create-room-con">
-            <button id="create-room-btn" type="button" class="btn btn-light btn-lg">Create Room</button>
-          </p>
-          <p class="small-text">
-            <i>"For when other tooling just feels laggy."</i>
-          </p>
-    </div>
-    <img src="/img/js.png">
+    <%}%>
+    <h3 id="heading">Deux Codes</h3>
+    <p>HTML/CSS/JS sandbox with real time collaboration.</p>
+    <p>Instant code and preview updates for the whole team.</p>
+    <p>Low latency remote pair programming powered by <a href="https://socket.io/">Socket.IO.</a></p>
+    <p></p>
+    <p id="create-room-con">
+      <button id="create-room-btn" type="button" class="btn btn-light btn-lg">Create Room</button>
+    </p>
+    <p class="small-text">
+      <i>"For when other tooling just feels laggy."</i>
+    </p>
   </div>
   <script>
     $("#create-room-btn").click(() => window.location.replace("/new-room"))
