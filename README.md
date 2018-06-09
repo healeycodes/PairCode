@@ -7,6 +7,6 @@ A HTML/CSS/JS sandbox with real time pair coding. Powered by socket.io and Node.
 
 Jest and SuperTest.
 
-Edit `"test"` in `config/config.json` and put in your test database's details, n.b. this project has only been tested with PostgreSQL.
+Edit `"test"` in `config/config.json` and put in your PostgreSQL server details.
 
-Then simply run `npm test`
+Then simply run `npm test`.
