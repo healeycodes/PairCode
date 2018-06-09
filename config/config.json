@@ -2,21 +2,21 @@
   "development": {
     "username": "root",
     "password": null,
-    "database": "pear_code_development",
+    "database": "development",
     "host": "localhost",
     "dialect": "postgres"
   },
   "test": {
     "username": "root",
     "password": null,
-    "database": "pear_code_test",
+    "database": "test",
     "host": "localhost",
     "dialect": "postgres"
   },
   "production": {
     "username": "root",
     "password": null,
-    "database": "pear_code_production",
+    "database": "production",
     "host": "localhost",
     "dialect": "postgres"
   }
