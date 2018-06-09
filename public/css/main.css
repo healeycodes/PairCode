@@ -7,6 +7,15 @@ body, html {
     color: #f0f8ff;
   }
 
+  a, a:hover, a:link  {
+    color: #f0f8ff;
+    text-decoration: underline;
+  }
+
+  a:visited, a:active {
+    color: #f0f8ff;
+  }
+
   #main {
     width: 500px;
     height: 500px;
