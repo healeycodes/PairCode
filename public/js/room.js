@@ -128,11 +128,11 @@ $(document).ready(() => {
     // Home "button"
     $("#home-btn").click(() => window.location.assign("/"))
 
-    // Pings the server every 2.5 seconds
+    // Pings the server every x milliseconds
     // Also returns room count
     ping = () => {
         socket.emit("_ping", { time: Date.now(), roomId: roomId, roomCount: null })
-        setTimeout("ping()", 2500)
+        setTimeout("ping()", 2000)
     }
     ping()
 })
