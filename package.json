@@ -1,7 +1,7 @@
 {
-    "name": "pear-code",
+    "name": "deux-codes",
     "version": "0.0.1",
-    "description": "A tool for real time pair coding.",
+    "description": "A HTML/CSS/JS sandbox with real time pair coding. Powered by socket.io and Node.js.",
     "dependencies": {
         "body-parser": "^1.18.3",
         "ejs": "^2.6.1",
