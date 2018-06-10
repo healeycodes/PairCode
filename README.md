@@ -1,5 +1,7 @@
 ## Deux Codes ~ [http://deuxcodes.com](http://deuxcodes.com)
 
+<br>
+
 A HTML/CSS/JS sandbox with real time pair coding. Powered by socket.io and Node.js.
 
 ![alt text](https://github.com/healeycodes/deux-codes/blob/master/public/img/js.png "Image of a room on Deux Codes")
