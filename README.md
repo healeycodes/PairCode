@@ -1,4 +1,4 @@
-## Deux Codes
+## Deux Codes ~ [http://deuxcodes.com](http://deuxcodes.com)
 
 A HTML/CSS/JS sandbox with real time pair coding. Powered by socket.io and Node.js.
 
@@ -6,11 +6,15 @@ A HTML/CSS/JS sandbox with real time pair coding. Powered by socket.io and Node.
 
 Any code you enter will be streamed with your private room, character by character. As a user's code area is changed, their preivew iframe will follow, keeping everyone in sync. You can fork or delete rooms, and import any external scripts you need via `<script>` tags. Rooms are automatically saved every half-second.
 
+<br>
+
 ### Tech Stack
 
 Back end: Node.js, Express with EJS templates, socket.io, PostgreSQL via Sequelize.
 
 Front end: HTML5/CSS3, JQuery, Bootstrap.
+
+<br>
 
 ### Tests
 
