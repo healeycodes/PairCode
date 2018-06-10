@@ -17,8 +17,8 @@ body, html {
   }
 
   #main {
-    width: 500px;
-    height: 500px;
+    width: 1000px;
+    height: 800px;
 
     position: absolute;
     top:0;
@@ -28,9 +28,14 @@ body, html {
 
     margin: auto;
  }
+
+ #centered {
+  margin-left: 195px;
+ }
   
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto Slab', serif;
+    letter-spacing: 2px;
   }
 
   #heading {
@@ -39,11 +44,12 @@ body, html {
 
   .small-text {
     font-size: .9em;
-    float: right;
+    margin-left: 270px;
+    margin-bottom: 50px;
   }
 
   #create-room-con {
-    text-align: center;
+    margin-left: 195px;
   }
 
   
