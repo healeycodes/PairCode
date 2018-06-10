@@ -34,7 +34,7 @@ const setId = (id) => user.id = id
 // Update iframe. Uses srcdoc-polyfill library
 const cycleFrame = () => {
     const liveFrame = document.getElementById("live-frame")
-    const newContent = `${page.html}<style>${page.css}</style><script>${page.js}</script>`;
+    const newContent = `${page.html}<style>${page.css}</style><script>${page.js}</script>`
     srcDoc.set(liveFrame, newContent)
 }
 
@@ -68,8 +68,13 @@ const checkIfNew = (msg) => {
 
 // When document is ready, set up listeners, buttons, etc.
 $(document).ready(() => {
+    // Update the preview to the last save point
+    const liveFrame = document.getElementById("live-frame")
+    const oldContent = $("#data").attr("data-page")
+    srcDoc.set(liveFrame, oldContent)
+
     // Store roomId
-    roomId = $("#menu").attr("roomid")
+    roomId = $("#data").attr("data-roomid")
 
     // Create fork button
     $("#fork-btn").click(() => { window.location = `/room/${roomId}/fork` })

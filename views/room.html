@@ -16,7 +16,7 @@
 </head>
 
 <body>
-  <div id="menu" roomid="<%-roomId-%>">
+  <div id="data" data-roomid="<%-roomId-%>" data-page="<%-srcdoc-%>">
     <div class="row">
       <div id="title-div">
         <h3 id="header">
@@ -51,7 +51,7 @@
       </div>
     </div>
   </div>
-  <iframe id="live-frame" src="javascript: '<%-srcdoc-%>'"></iframe>
+  <iframe id="live-frame"></iframe>
   <div id="user-code">
     <section id="html">
       <textarea placeholder="HTML"><%-html-%></textarea>
