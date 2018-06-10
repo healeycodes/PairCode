@@ -14,7 +14,7 @@ Any code you enter will be streamed with your private room, character by charact
 
 Back end: Node.js, Express with EJS templates, socket.io, PostgreSQL via Sequelize.
 
-Front end: HTML5/CSS3, JQuery, Bootstrap.
+Front end: HTML5/CSS3, JQuery, Bootstrap, srcdoc-polyfill.
 
 <br>
 
