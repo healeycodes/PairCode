@@ -31,9 +31,12 @@ const user = {
 }
 const setId = (id) => user.id = id
 
-// Update iframe
-const cycleFrame = () => $("#live-frame").attr("srcdoc", `${page.html}<style>${page.css}</style>
-    <script>${page.js}</script>`)
+// Update iframe. Uses srcdoc-polyfill library
+const cycleFrame = () => {
+    const liveFrame = document.getElementById("live-frame")
+    const newContent = `${page.html}<style>${page.css}</style><script>${page.js}</script>`
+    srcDoc.set(liveFrame, newContent)
+}
 
 // Update user code
 const setUserCode = (msg) => {
@@ -65,8 +68,13 @@ const checkIfNew = (msg) => {
 
 // When document is ready, set up listeners, buttons, etc.
 $(document).ready(() => {
+    // Update the preview to the last save point
+    const liveFrame = document.getElementById("live-frame")
+    const oldContent = $("#data").attr("data-page")
+    srcDoc.set(liveFrame, oldContent)
+
     // Store roomId
-    roomId = $("#menu").attr("roomid")
+    roomId = $("#data").attr("data-roomid")
 
     // Create fork button
     $("#fork-btn").click(() => { window.location = `/room/${roomId}/fork` })
@@ -122,11 +130,13 @@ $(document).ready(() => {
         autosave.postMessage({ html: html, css: css, js: js })
     })
 
-    // Delete button logic
+    // Delete button
     $("#delete-btn").click(() => window.location.replace(`/room/${roomId}/delete`))
 
-    // Home "button"s
+    // Home button
     $("#home-btn").click(() => window.location.assign("/"))
+
+    // Header link-back
     $("#header").click(() => window.location.assign("/"))
 
     // Pings the server every x milliseconds
