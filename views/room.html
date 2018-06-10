@@ -8,6 +8,7 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto|Source+Code+Pro" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="/css/room.css">
+  <script src="/js/srcdoc-polyfill.min.js"></script>
   <script src="/js/jquery.min.js"></script>
   <script src="/js/socket.io.js"></script>
   <script src="/js/bootstrap.bundle.min.js"></script>
@@ -50,7 +51,7 @@
       </div>
     </div>
   </div>
-  <iframe id="live-frame" srcdoc="<%-srcdoc-%>"></iframe>
+  <iframe id="live-frame" src="javascript: '<%-srcdoc-%>'"></iframe>
   <div id="user-code">
     <section id="html">
       <textarea placeholder="HTML"><%-html-%></textarea>
