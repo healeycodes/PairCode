@@ -125,8 +125,9 @@ $(document).ready(() => {
     // Delete button logic
     $("#delete-btn").click(() => window.location.replace(`/room/${roomId}/delete`))
 
-    // Home "button"
+    // Home "button"s
     $("#home-btn").click(() => window.location.assign("/"))
+    $("#header").click(() => window.location.assign("/"))
 
     // Pings the server every x milliseconds
     // Also returns room count
