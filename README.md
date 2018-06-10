@@ -18,6 +18,10 @@ Front end: HTML5/CSS3, JQuery, Bootstrap, srcdoc-polyfill.
 
 <br>
 
+### Build
+
+`npm install`
+
 ### Tests
 
 Tested with Jest and SuperTest.
