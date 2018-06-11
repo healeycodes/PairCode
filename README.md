@@ -22,11 +22,20 @@ Front end: HTML5/CSS3, JQuery, Bootstrap, srcdoc-polyfill.
 
 `npm install`
 
+<br>
+
 ### Tests
 
 Tested with Jest and SuperTest.
 
+Edit `"test"` in `config/config.json` and put in your PostgreSQL server details.
 
-1. Edit `"test"` in `config/config.json` and put in your PostgreSQL server details.
+Simply run `npm test`
 
-2. Simply run `npm test`
+<br>
+
+### Run
+
+Edit `"production"` in `config/config.json` and put in your PostgreSQL server details.
+
+`node app.js`
