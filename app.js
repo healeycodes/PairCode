@@ -61,12 +61,11 @@ app.get('/room/:roomId', (req, res) => {
                 res.render('room.html', {
                     title: 'Deux Codes',
                     roomId: req.params.roomId,
-                    roomLink: url + req.params.roomId,
+                    roomLink: `${url}/rooms/${req.params.roomId}`,
                     html: String(room.html),
                     css: String(room.css),
                     js: String(room.js),
-                    srcdoc: String(room.html) + "<style>" + String(room.css) + "</style>"
-                        + "<script>" + String(room.js) + "</script>"
+                    srcdoc: `${String(room.html)}<style>${String(room.css)}</style><script>${String(room.js)}</script>`
                 })
             } else {
                 errorPage(res, "No room by that ID.")
