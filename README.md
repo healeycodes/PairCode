@@ -16,26 +16,26 @@ Back end: Node.js, Express with EJS templates, socket.io, PostgreSQL via Sequeli
 
 Front end: HTML5/CSS3, JQuery, Bootstrap, srcdoc-polyfill.
 
+Tested with: Jest, SuperTest.
+
 <br>
 
 ### Build
 
-`npm install`
+1. `npm install`
 
 <br>
 
 ### Tests
 
-Tested with Jest and SuperTest.
+1. Edit `"test"` in `config/config.json` with your PostgreSQL server details.
 
-Edit `"test"` in `config/config.json` and put in your PostgreSQL server details.
-
-Simply run `npm test`
+2. Run `npm test`
 
 <br>
 
 ### Run
 
-Edit `"production"` in `config/config.json` and put in your PostgreSQL server details.
+1. Edit `"production"` in `config/config.json` with your PostgreSQL server details.
 
-`node app.js`
+2. Run `node app.js`
