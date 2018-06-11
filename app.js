@@ -61,7 +61,7 @@ app.get('/room/:roomId', (req, res) => {
                 res.render('room.html', {
                     title: 'Deux Codes',
                     roomId: req.params.roomId,
-                    roomLink: `${url}rooms/${req.params.roomId}`,
+                    roomLink: `${url}room/${req.params.roomId}`,
                     html: String(room.html),
                     css: String(room.css),
                     js: String(room.js),
