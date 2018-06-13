@@ -31,7 +31,7 @@ app.use(bodyParser.json({limit: '100mb', type: 'application/json'}))
 app.use(bodyParser.json())
 
 // Website Url
-const url = "deuxcodes.com/"
+const url = "deuxcodes.com"
 
 // GET: Home Page
 app.get('/', (req, res) => res.render('main.html', { popup: "" }))
@@ -61,7 +61,7 @@ app.get('/room/:roomId', (req, res) => {
                 res.render('room.html', {
                     title: 'Deux Codes',
                     roomId: req.params.roomId,
-                    roomLink: `${url}room/${req.params.roomId}`,
+                    roomLink: `${url}/room/${req.params.roomId}`,
                     html: String(room.html),
                     css: String(room.css),
                     js: String(room.js),
