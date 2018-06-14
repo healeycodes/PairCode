@@ -45,5 +45,6 @@ body, html {
     margin-left: 195px;
   }
 
-  
-
+  .alert {
+    width: 50%;
+  }
