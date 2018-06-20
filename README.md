@@ -4,7 +4,7 @@
 
 Real time pair coding in a HTML/CSS/JS playground. Powered by socket.io and Node.js.
 
-![alt text](https://github.com/healeycodes/deux-codes/blob/master/public/img/js.png "Image of a room on Deux Codes")
+![alt text](https://raw.githubusercontent.com/healeycodes/deux-codes/master/public/img/js.png "Image of a room on Deux Codes")
 
 Any code you enter will be streamed with your private room, character by character. As a user's code area is changed, their preivew iframe will follow, keeping everyone in sync. You can fork or delete rooms, and import any external scripts you need via `<script>` tags. Rooms are automatically saved every half-second.
 
