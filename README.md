@@ -1,8 +1,10 @@
-### Deux Codes ~ [http://deuxcodes.com](http://deuxcodes.com)
+### Deux Codes
+
+A CodePen-like clone that I used to run. It helped people within my developer community connect by __pair programming__.
 
 <br>
 
-Real time pair coding in a HTML/CSS/JS playground. Powered by socket.io and Node.js.
+Tagline: _Real time pair coding in a HTML/CSS/JS playground. Powered by socket.io and Node.js._
 
 ![alt text](https://raw.githubusercontent.com/healeycodes/deux-codes/master/public/img/js.png "Image of a room on Deux Codes")
 
