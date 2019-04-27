@@ -1,23 +1,23 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
     "database": "development",
     "host": "localhost",
-    "dialect": "postgres"
+    "dialect": "sqlite",
+    "operatorsAliases": false,
+    "location": ".data/dev.sqlite"
   },
   "test": {
-    "username": "root",
-    "password": null,
     "database": "test",
     "host": "localhost",
-    "dialect": "postgres"
+    "dialect": "sqlite",
+    "operatorsAliases": false,
+    "location": ".data/test.sqlite"
   },
   "production": {
-    "username": "root",
-    "password": null,
     "database": "production",
     "host": "localhost",
-    "dialect": "postgres"
+    "dialect": "sqlite",
+    "operatorsAliases": false,
+    "location": ".data/prod.sqlite"
   }
 }

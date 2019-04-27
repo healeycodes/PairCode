@@ -1,6 +1,6 @@
 /*
  * room.js
- * The client code for Pear Code
+ * The client code for PairCode
  * Front end: Bootstrap, HTML, CSS, ES6 JavaScript
  */
 
@@ -77,20 +77,26 @@ $(document).ready(() => {
     roomId = $("#data").attr("data-roomid")
 
     // Create fork button
-    $("#fork-btn").click(() => { window.location = `/room/${roomId}/fork` })
+    $("#fork-btn").click(() => {
+        window.location = `/room/${roomId}/fork`
+    })
 
     // Create autosave Web Worker
-    if (typeof (autosave) == "undefined") {
+    if (typeof(autosave) == "undefined") {
         autosave = new Worker("/js/autosave.js")
         autosave.onmessage = (event) => {
             $("#last-saved").text(`Autosaved @ ${event.data}`)
         }
-        autosave.postMessage({ roomId: roomId })
+        autosave.postMessage({
+            roomId: roomId
+        })
     }
 
     // Socket.IO
     const socket = io()
-    socket.emit('join-room', { roomId: roomId })
+    socket.emit('join-room', {
+        roomId: roomId
+    })
 
     $(() => {
         socket.on('connect', () => {
@@ -124,10 +130,22 @@ $(document).ready(() => {
         cycleFrame()
 
         // Share our data to the room
-        socket.emit("update", { data: { id: user.id, html: html, css: css, js: js }, roomId: roomId })
+        socket.emit("update", {
+            data: {
+                id: user.id,
+                html: html,
+                css: css,
+                js: js
+            },
+            roomId: roomId
+        })
 
         // Send data to be saved
-        autosave.postMessage({ html: html, css: css, js: js })
+        autosave.postMessage({
+            html: html,
+            css: css,
+            js: js
+        })
     })
 
     // Delete button
@@ -142,7 +160,11 @@ $(document).ready(() => {
     // Pings the server every x milliseconds
     // Also returns room count
     ping = () => {
-        socket.emit("_ping", { time: Date.now(), roomId: roomId, roomCount: null })
+        socket.emit("_ping", {
+            time: Date.now(),
+            roomId: roomId,
+            roomCount: null
+        })
         setTimeout("ping()", 2000)
     }
     ping()

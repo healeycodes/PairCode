@@ -1,10 +1,13 @@
+/*
+ * app.test.js
+ * Integration testing for PairCode
+ */
 const request = require('supertest')
 const app = require('../app.js')
 const models = require('../models')
 
 describe('app', () => {
-    
-    // Database
+
     beforeAll(() => {
         return expect(require('../models').sequelize.sync()).not.toBeUndefined()
     })
@@ -51,7 +54,11 @@ describe('app', () => {
             it('Creates a Room', () => {
                 request(app).get('/new-room')
                     .then(res => request(app).get(res.header.location))
-                    .then(roomRes => this.Room.findOne({ where: { roomid: res.header.location.split("/")[2] } }))
+                    .then(roomRes => this.Room.findOne({
+                        where: {
+                            roomid: res.header.location.split("/")[2]
+                        }
+                    }))
                     .then(room => {
                         return expect(room).not.toBeNull()
                     })

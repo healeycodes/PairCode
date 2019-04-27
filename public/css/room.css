@@ -1,48 +1,54 @@
 * {
-  margin:0;
-  padding:0;  
+    margin: 0;
+    padding: 0;
 }
 
-body, html {
-  height: 100%;
-  width: 100%;
-  position: relative;
-  font-family: 'Open Sans', sans-serif;
-  -webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+body,
+html {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    font-family: 'Open Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Roboto', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Roboto', sans-serif;
 }
 
 #user-code {
-  width: 25%;
-  float: left;
+    width: 25%;
+    float: left;
 }
 
 #live-frame {
-  height: 90%;
-  width: 74.5%;
-  float: right;
-  border: none;
+    height: 90%;
+    width: 74.5%;
+    float: right;
+    border: none;
 }
 
 section {
-  float: right;
-  height: 33.3%;
-  position: absolute;
-  width: 24.75%;
-  font-family: 'Source Code Pro', monospace;
+    float: right;
+    height: 33.3%;
+    position: absolute;
+    width: 24.75%;
+    font-family: 'Source Code Pro', monospace;
 }
 
 textarea {
-  height: 97.5%;
-  width: 100%;
-  resize: none;
-  background-color: #2f4f4f;
-  color: #f0f8ff;
-  padding: 1%;
+    height: 97.5%;
+    width: 100%;
+    resize: none;
+    background-color: #2f4f4f;
+    color: #f0f8ff;
+    padding: 1%;
 }
 
 #js {
@@ -58,56 +64,65 @@ textarea {
 }
 
 #data {
-  height: 10%;
-  width: 74.5%;
-  float: right;
-  padding: 0.25%;
+    height: 10%;
+    width: 74.5%;
+    float: right;
+    padding: 0.25%;
 }
 
 #last-saved-con {
-  text-align: right;
+    text-align: right;
 }
 
 #last-saved {
-  line-height: 35px;
+    line-height: 35px;
 }
 
 #fork-btn-con {
-  text-align: center;
+    text-align: center;
 }
 
 #ping {
-  float: right;
-  line-height: 35px;
-  margin-right: 5px;
+    float: right;
+    line-height: 35px;
+    margin-right: 5px;
 }
 
 .row {
-  margin-left: auto; margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-  color: #f0f8ff;
-  padding: 1%;
-}
-::-moz-placeholder { /* Firefox 19+ */
-  color: #f0f8ff;
-  padding: 1%;
-}
-:-ms-input-placeholder { /* IE 10+ */
-  color: #f0f8ff;
-  padding: 1%;
-}
-:-moz-placeholder { /* Firefox 18- */
-  color: #f0f8ff;
-  padding: 1%;
+::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    color: #f0f8ff;
+    padding: 1%;
 }
 
-::placeholder { /* Generic */
-  color: #f0f8ff;
-  padding: 1%;
+::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #f0f8ff;
+    padding: 1%;
+}
+
+:-ms-input-placeholder {
+    /* IE 10+ */
+    color: #f0f8ff;
+    padding: 1%;
+}
+
+:-moz-placeholder {
+    /* Firefox 18- */
+    color: #f0f8ff;
+    padding: 1%;
+}
+
+::placeholder {
+    /* Generic */
+    color: #f0f8ff;
+    padding: 1%;
 }
 
 div.col-sm {
-  padding: 0%;
+    padding: 0%;
 }
