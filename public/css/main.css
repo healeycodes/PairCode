@@ -54,3 +54,7 @@ h6 {
 .alert {
     margin: 0 300px 20px 300px;
 }
+
+.splash-img {
+    opacity: .75;
+}
