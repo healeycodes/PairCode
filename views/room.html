@@ -2,62 +2,65 @@
 <html>
 
 <head>
-  <title>
-    <%-title-%>
-  </title>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto|Source+Code+Pro" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="/css/room.css">
-  <script src="/js/srcdoc-polyfill.min.js"></script>
-  <script src="/js/jquery.min.js"></script>
-  <script src="/js/socket.io.js"></script>
-  <script src="/js/bootstrap.bundle.min.js"></script>
-  <script src="/js/room.js"></script>
+    <title>
+        <%-title-%>
+    </title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto|Source+Code+Pro" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/room.css">
+    <script src="/js/srcdoc-polyfill.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/socket.io.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/dat-gui.js"></script>
+    <script src="/js/room.js"></script>
 </head>
 
 <body>
-  <div id="data" data-roomid="<%-roomId-%>" data-page="<%-srcdoc-%>">
-    <div class="row">
-      <div class="col-sm">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text">Invite</span>
-          </div>
-          <input type="text" class="form-control form-control-sm" value="<%-roomLink-%>" disabled>
+    <div id="data" data-roomid="<%-roomId-%>" data-page="<%-srcdoc-%>">
+        <div class="row">
+            <div class="col-sm">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">Invite</span>
+                    </div>
+                    <input type="text" class="form-control form-control-sm" value="<%-roomLink-%>" onclick="this.select();">
+                </div>
+            </div>
+            <div class="col-sm">
+                <div id="last-saved-con">
+                    <span id="last-saved"></span>
+                </div>
+            </div>
+            <div id="fork-btn-con" class="col-sm">
+                <span class="dropdown">
+                    <button class="btn btn-dark dropdown-toggle" id="menu-btn" data-toggle="dropdown">
+                        Menu
+                    </button>
+                    <div class="dropdown-menu">
+                        <button id="home-btn" class="dropdown-item" type="button">Home</button>
+                        <button id="fork-btn" class="dropdown-item" type="button">Fork</button>
+                        <button id="delete-btn" class="dropdown-item" type="button">Delete</button>
+                    </div>
+                </span>
+                <span id="ping"></span>
+            </div>
         </div>
-      </div>
-      <div class="col-sm">
-        <div id="last-saved-con">
-          <span id="last-saved"></span>
-        </div>
-      </div>
-      <div id="fork-btn-con" class="col-sm">
-        <span class="dropdown">
-          <button class="btn btn-outline-dark dropdown-toggle" id="menu-btn" data-toggle="dropdown">
-            Menu
-          </button>
-          <div class="dropdown-menu">
-            <button id="home-btn" class="dropdown-item" type="button">Home</button>
-            <button id="fork-btn" class="dropdown-item" type="button">Fork</button>
-            <button id="delete-btn" class="dropdown-item" type="button">Delete</button>
-          </div>
-        </span>
-        <span id="ping"></span>
-      </div>
     </div>
-  </div>
-  <iframe id="live-frame"></iframe>
-  <div id="user-code">
-    <section id="html">
-      <textarea placeholder="HTML"><%-html-%></textarea>
-    </section>
-    <section id="css">
-      <textarea placeholder="CSS"><%-css-%></textarea>
-    </section>
-    <section id="js">
-      <textarea placeholder="JS"><%-js-%></textarea>
-    </section>
-  </div>
+    <iframe id="live-frame"></iframe>
+    <div id="user-code">
+        <section id="html">
+            <textarea placeholder="HTML"><%-html-%></textarea>
+        </section>
+        <section id="css">
+            <textarea placeholder="CSS"><%-css-%></textarea>
+        </section>
+        <section id="js">
+            <textarea placeholder="JS"><%-js-%></textarea>
+        </section>
+    </div>
 </body>
+
+<script></script>
 
 </html>

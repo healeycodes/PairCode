@@ -1,12 +1,12 @@
 /*
  * app.js
- * The application logic for Deux Codes
- * Back end: Node.js, Express with EJS, Sequelize (PostgreSQL)
+ * The application logic for PairCode
+ * Back end: Node.js, Express with EJS, Sequelize (SQLite)
  * Testing: Jest
  */
-
 const express = require('express')
 const bodyParser = require('body-parser')
+const friendlyWords = require('friendly-words');
 const ejs = require('ejs').renderFile
 const app = express()
 const http = require('http').createServer(app)
@@ -15,8 +15,11 @@ const io = require('socket.io')(http)
 // Database
 const models = require('./models')
 
-// Helper functions
-const rndID = () => require('crypto').randomBytes(10).toString('hex')
+// Friendly random id
+const rndID = () => {
+    const pick = arr => arr[Math.floor(Math.random() * arr.length)]
+    return `${pick(friendlyWords.predicates)}-${pick(friendlyWords.objects)}-${pick(friendlyWords.objects)}`
+}
 
 // Express config
 app.use(express.static(__dirname + '/public/'))
@@ -27,27 +30,30 @@ app.use('/favicon.ico', express.static(__dirname + 'public/favicon.ico'))
 app.set('views', __dirname + '/views')
 app.engine('html', ejs)
 app.set('view engine', 'html')
-app.use(bodyParser.json({limit: '100mb', type: 'application/json'}))
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 // Website Url
-const url = "deuxcodes.com"
+const url = "https://paircode.glitch.me"
 
 // GET: Home Page
-app.get('/', (req, res) => res.render('main.html', { popup: "" }))
+app.get('/', (req, res) => res.render('main.html', {
+    popup: ""
+}))
 
 // Error Page
-const errorPage = (res, error = "Unspecified error.") => res.render('main.html', { popup: error })
+const errorPage = (res, error = "Unspecified error.") => res.render('main.html', {
+    popup: error
+})
 
 // GET: Create room
 app.get('/new-room', (req, res) => {
     const newRoomId = rndID()
     let newRoom = models.Room.create({
-        roomid: newRoomId,
-        html: "",
-        css: "",
-        js: ""
-    })
+            roomid: newRoomId,
+            html: "",
+            css: "",
+            js: ""
+        })
         .then(() => res.redirect('/room/' + newRoomId))
         .catch(error => console.log(error))
 })
@@ -55,11 +61,15 @@ app.get('/new-room', (req, res) => {
 // GET: Join room
 app.get('/room/:roomId', (req, res) => {
     // Room should always be in DB, if not then send to error page
-    models.Room.findOne({ where: { roomid: req.params.roomId } })
+    models.Room.findOne({
+            where: {
+                roomid: req.params.roomId
+            }
+        })
         .then(room => {
             if (room) {
                 res.render('room.html', {
-                    title: 'Deux Codes',
+                    title: 'PairCode',
                     roomId: req.params.roomId,
                     roomLink: `${url}/room/${req.params.roomId}`,
                     html: String(room.html),
@@ -77,14 +87,15 @@ app.get('/room/:roomId', (req, res) => {
 // POST: Save room
 app.post('/room/:roomId/save', (req, res) => {
     const json = req.body
-    models.Room.update(
-        {
+    models.Room.update({
             html: json.html,
             css: json.css,
             js: json.js
-        },
-        { where: { roomid: req.params.roomId } }
-    )
+        }, {
+            where: {
+                roomid: req.params.roomId
+            }
+        })
         // Send timestamp
         .then(res.send(JSON.stringify(new Date().toISOString().replace('T', ' ').substr(0, 19))))
         .catch(error => console.log(error))
@@ -94,9 +105,11 @@ app.post('/room/:roomId/save', (req, res) => {
 app.get('/room/:roomId/delete', (req, res) => {
     const roomId = req.params.roomId
     models.Room.destroy({
-        where: { roomid: roomId },
-        force: true
-    })
+            where: {
+                roomid: roomId
+            },
+            force: true
+        })
         .then(res.redirect('/'))
         .catch(error => console.log(error))
 })
@@ -105,15 +118,19 @@ app.get('/room/:roomId/delete', (req, res) => {
 app.get('/room/:roomId/fork', (req, res) => {
     const newRoomId = rndID()
     // Room should always be in DB, if not then send to error page
-    models.Room.findOne({ where: { roomid: req.params.roomId } })
+    models.Room.findOne({
+            where: {
+                roomid: req.params.roomId
+            }
+        })
         .then(room => {
             if (room) {
                 let newRoom = models.Room.create({
-                    roomid: newRoomId,
-                    html: String(room.html),
-                    css: String(room.css),
-                    js: String(room.js)
-                })
+                        roomid: newRoomId,
+                        html: String(room.html),
+                        css: String(room.css),
+                        js: String(room.js)
+                    })
                     .then(() => res.redirect('/room/' + newRoomId))
                     .catch(error => console.log(error))
             } else {
@@ -147,15 +164,20 @@ io.on('connection', (socket) => {
         } else {
             roomCount = 0
         }
-        socket.emit('_pong', { time: msg.time, roomCount: roomCount })
+        socket.emit('_pong', {
+            time: msg.time,
+            roomCount: roomCount
+        })
     })
 })
 
-// Listen
-models.sequelize.sync().then(function () {
-    http.listen(process.env.PORT || 3000, () =>
-        console.log(`listening on ${process.env.PORT || 3000}`)
-    )
-})
 
-module.exports = app
+if (process.env.NODE_ENV === 'test') {
+    module.exports = app;
+} else {
+    models.sequelize.sync().then(function() {
+        http.listen(process.env.PORT || 3000, () =>
+            console.log(`listening on ${process.env.PORT || 3000}`)
+        )
+    })
+}

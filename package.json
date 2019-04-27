@@ -1,21 +1,23 @@
 {
-    "name": "deux-codes",
-    "version": "0.0.1",
-    "description": "A HTML/CSS/JS sandbox with real time pair coding. Powered by socket.io and Node.js.",
-    "dependencies": {
-        "body-parser": "^1.18.3",
-        "ejs": "^2.6.1",
-        "express": "^4.16.3",
-        "pg": "^7.4.3",
-        "sequelize": "^4.37.10",
-        "sequelize-cli": "^4.0.0",
-        "socket.io": "^2.1.1",
-        "supertest": "^3.1.0"
-    },
-    "scripts": {
-        "test": "jest --forceExit"
-    },
-    "devDependencies": {
-        "jest": "^23.1.0"
-    }
+  "name": "PairCode",
+  "version": "0.0.1",
+  "description": "A HTML/CSS/JS sandbox with real time pair coding. Powered by socket.io and Node.js.",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "sequelize": "^4.37.10",
+    "sequelize-cli": "^4.0.0",
+    "socket.io": "^2.1.1",
+    "sqlite3": "^4.0.6",
+    "friendly-words": "^1.1.5"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^23.1.0",
+    "supertest": "^3.1.0"
+  }
 }

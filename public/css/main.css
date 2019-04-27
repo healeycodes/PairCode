@@ -1,50 +1,56 @@
-
-body, html {
+body,
+html {
     font-family: 'Open Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #2f4f4f;
     color: #f0f8ff;
-  }
+}
 
-  a, a:hover, a:link  {
+a,
+a:hover,
+a:link {
     color: #f0f8ff;
     text-decoration: underline;
-  }
+}
 
-  a:visited, a:active {
+a:visited,
+a:active {
     color: #f0f8ff;
-  }
+}
 
-  #main {
+#main {
     width: 1000px;
     margin: auto;
     margin-top: 100px;
- }
+}
 
- #centered {
-  margin-left: 195px;
- }
-  
-  h1, h2, h3, h4, h5, h6 {
+.centered {
+    text-align: center;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: 'Roboto Slab', serif;
     letter-spacing: 2px;
-  }
+}
 
-  #heading {
-      margin-bottom: 20px;
-  }
+#heading {
+    margin-bottom: 20px;
+}
 
-  .small-text {
-    font-size: .9em;
-    margin-left: 270px;
-    margin-bottom: 50px;
-  }
-
-  #create-room-con {
+#create-room-con {
     margin-left: 195px;
-  }
+}
 
-  .alert {
-    width: 50%;
-  }
+#create-room-btn {
+    margin: 10px 0 25px 0;
+}
+
+.alert {
+    margin: 0 300px 20px 300px;
+}
