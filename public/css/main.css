@@ -57,6 +57,9 @@ h6 {
 
 .splash-img {
     opacity: .75;
+}
+
+#create-room-btn {
     animation: shake 1s;
     animation-delay: .5s;
     animation-iteration-count: .5;
