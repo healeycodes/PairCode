@@ -1,6 +1,6 @@
-### PairCode
+### PairCode ~ https://paircode.glitch.me
 
-A CodePen clone (but _faster_). Mostly because I love __pair programming__. Powered by socket.io and Node.js.
+A CodePen clone (but _faster_). Mostly because I love __pair programming__. _Powered by socket.io and Node.js._
 
 <br>
 
