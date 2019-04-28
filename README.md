@@ -2,7 +2,7 @@
 
 ### PairCode ~ https://paircode.glitch.me
 
-A CodePen clone (but _faster_). Mostly because I love __pair programming__. _Powered by socket.io and Node.js._
+A CodePen clone (but faster). Mostly because I love __pair programming__. _Powered by socket.io and Node.js._
 
 <br>
 
@@ -18,7 +18,7 @@ Back end: Node.js, Express with EJS templates, socket.io, SQLite via Sequelize.
 
 Front end: HTML5/CSS3, JQuery, Bootstrap.
 
-Tested with: Jest, SuperTest.
+Tested with: Jest, SuperTest. Travis CI for continuous integration. Test builds on every commit/PR.
 
 <br>
 
