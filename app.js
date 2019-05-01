@@ -11,6 +11,7 @@ const ejs = require('ejs').renderFile
 const app = express()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
+const crypto = require('crypto')
 
 // Express config
 app.use(express.static(__dirname + '/public/'))
@@ -143,18 +144,24 @@ app.get('/room/:roomId/fork', (req, res) => {
 
 
 // (SPECIAL) POST: Receive webhook from GitHub
-app.post('/git', async (req, res) => {
+app.post('/git', (req, res) => {
     const file = 'git.sh';
-    if (req.headers['x-github-event'] == 'push') {
-        const { exec } = require('child_process');
-        // Fetch the newest code
-        await exec('git fetch origin master')
-        // Hard reset
-        await exec('git reset --hard origin/master')
-        // Force pull
-        await exec('git pull origin master --force')
+    const hmac = crypto.createHmac('sha1', process.env.SECRET)
+    const sig  = 'sha1=' + hmac.update(JSON.stringify(req.body)).digest('hex')
+    if (req.headers['x-github-event'] === 'push' ||
+        sig === req.headers['x-hub-signature']) {
+        const { execSync } = require('child_process');
+        const commands = ['git fetch origin master',
+                          'git reset --hard origin/master',
+                          'git pull origin master --force']
+
+        for (const cmd of commands) {
+            console.log(execSync(cmd).toString())
+        } 
+        console.log('> [GIT] Updated with origin/master')
+    } else {
+        console.log('> Webhook signature incorrect!')
     }
-    console.log("> [GIT] Updated with origin/master")
     return res.sendStatus(200);
 });
 
