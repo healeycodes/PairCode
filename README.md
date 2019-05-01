@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/healeycodes/paircode.svg?branch=master)](https://travis-ci.org/healeycodes/paircode)
+[![Build Status](https://travis-ci.org/healeycodes/PairCode.svg?branch=master)](https://travis-ci.org/healeycodes/paircode)
 
 ### PairCode ~ https://paircode.glitch.me
 
