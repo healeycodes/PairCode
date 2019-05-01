@@ -145,13 +145,16 @@ app.get('/room/:roomId/fork', (req, res) => {
 // (SPECIAL) POST: Receive webhook from GitHub
 app.post('/git', async (req, res) => {
     const file = 'git.sh';
-    if (req.headers['x-github-event'] == "push") {
-      const { exec } = require('child_process');
-      await exec('chmod', ['777', file]);
-      await exec(`./${file}`);
-      await exec('refresh');
+    if (req.headers['x-github-event'] == 'push') {
+        const { exec } = require('child_process');
+        // Fetch the newest code
+        await exec('git fetch origin master')
+        // Hard reset
+        await exec('git reset --hard origin/master')
+        // Force pull
+        await exec('git pull origin master --force')
     }
-    console.log("> [GIT] Updated with origin/master");
+    console.log("> [GIT] Updated with origin/master")
     return res.sendStatus(200);
 });
 
