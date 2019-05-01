@@ -38,7 +38,9 @@ Tested with: Jest, SuperTest.
 
 `node app.js`
 
-Set these if you're using GitHub webhook for continuous deployment.
+If you're using GitHub webhook for continuous deployment:
 
-`SECRET` - your webhook secret.
-`REMOTE` - your remote to fetch from.
+Create remote branch using `git remote add origin {url}`.
+
+Set `SECRET` to your webhook secret.
+
