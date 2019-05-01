@@ -7,15 +7,15 @@ html {
     color: #f0f8ff;
 }
 
-a,
-a:hover,
-a:link {
+.link,
+.link:hover,
+.link:link {
     color: #f0f8ff;
     text-decoration: underline;
 }
 
-a:visited,
-a:active {
+.link:visited,
+.link:active {
     color: #f0f8ff;
 }
 
@@ -64,7 +64,13 @@ h6 {
     animation-delay: .5s;
     animation-iteration-count: .5;
 }
-  
+
+.github-button-con {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
 @keyframes shake {
     0% { transform: translate(.5px, .5px) rotate(0deg); }
     10% { transform: translate(-.5px, -.5px) rotate(-1deg); }
