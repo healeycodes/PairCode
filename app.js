@@ -12,15 +12,6 @@ const app = express()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
 
-// Database
-const models = require('./models')
-
-// Friendly random id
-const rndID = () => {
-    const pick = arr => arr[Math.floor(Math.random() * arr.length)]
-    return `${pick(friendlyWords.predicates)}-${pick(friendlyWords.objects)}-${pick(friendlyWords.objects)}`
-}
-
 // Express config
 app.use(express.static(__dirname + '/public/'))
 app.use('/img', express.static(__dirname + 'public/img'))
@@ -32,8 +23,18 @@ app.engine('html', ejs)
 app.set('view engine', 'html')
 app.use(bodyParser.json());
 
+// Database
+const models = require('./models')
+
 // Website Url
-const url = "https://paircode.glitch.me"
+const url = process.env.URL
+
+// Friendly random id
+const rndID = () => {
+    const pick = arr => arr[Math.floor(Math.random() * arr.length)]
+    return `${pick(friendlyWords.predicates)}-${pick(friendlyWords.objects)}-${pick(friendlyWords.objects)}`
+}
+
 
 // GET: Home Page
 app.get('/', (req, res) => res.render('main.html', {
@@ -60,7 +61,7 @@ app.get('/new-room', (req, res) => {
 
 // GET: Join room
 app.get('/room/:roomId', (req, res) => {
-    // Room should always be in DB, if not then send to error page
+    // Room should always be in DB, else send to error page
     models.Room.findOne({
             where: {
                 roomid: req.params.roomId
@@ -117,7 +118,7 @@ app.get('/room/:roomId/delete', (req, res) => {
 // GET: Fork room
 app.get('/room/:roomId/fork', (req, res) => {
     const newRoomId = rndID()
-    // Room should always be in DB, if not then send to error page
+    // Room should always be in DB, else send to error page
     models.Room.findOne({
             where: {
                 roomid: req.params.roomId
@@ -139,6 +140,20 @@ app.get('/room/:roomId/fork', (req, res) => {
         })
         .catch(error => console.log(error))
 })
+
+
+// (SPECIAL) POST: Receive webhook from GitHub
+app.post('/git', async (req, res) => {
+    const file = 'git.sh';
+    if (req.headers['x-github-event'] == "push") {
+      const { exec } = require('child_process');
+      await exec('chmod', ['777', file]);
+      await exec(`./${file}`);
+      await exec('refresh');
+    }
+    console.log("> [GIT] Updated with origin/master");
+    return res.sendStatus(200);
+});
 
 // Socket.IO
 io.on('connection', (socket) => {
@@ -171,13 +186,8 @@ io.on('connection', (socket) => {
     })
 })
 
-
-if (process.env.NODE_ENV === 'test') {
-    module.exports = app;
-} else {
-    models.sequelize.sync().then(function() {
-        http.listen(process.env.PORT || 3000, () =>
-            console.log(`listening on ${process.env.PORT || 3000}`)
-        )
-    })
+module.exports = {
+    app: app,
+    http: http,
+    models: models
 }
