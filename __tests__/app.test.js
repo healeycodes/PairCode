@@ -3,8 +3,8 @@
  * Integration testing for PairCode
  */
 const request = require('supertest')
-const app = require('../app.js')
-const models = require('../models')
+const { app } = require('../app.js')
+const { models } = require('../models')
 
 describe('app', () => {
 
