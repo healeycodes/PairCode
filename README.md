@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/healeycodes/paircode.svg?branch=master)](https://travis-ci.org/healeycodes/paircode)
+[![Build Status](https://travis-ci.org/healeycodes/PairCode.svg?branch=master)](https://travis-ci.org/healeycodes/PairCode)
 
 ## PairCode ~ https://paircode.glitch.me
 
@@ -37,3 +37,10 @@ Tested with: Jest, SuperTest.
 ### Run
 
 `node app.js`
+
+##### If you're using GitHub webhook for continuous deployment:
+
+Create remote branch using `git remote add origin {url}`.
+
+Set `SECRET` to your webhook secret.
+
