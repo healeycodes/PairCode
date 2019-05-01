@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/healeycodes/paircode.svg?branch=master)](https://travis-ci.org/healeycodes/paircode)
 
-### PairCode ~ https://paircode.glitch.me
+## PairCode ~ https://paircode.glitch.me
 
 A CodePen clone (but _faster_). Mostly because I love __pair programming__. _Powered by socket.io and Node.js._
 
