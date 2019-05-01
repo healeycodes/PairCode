@@ -36,6 +36,9 @@ Tested with: Jest, SuperTest.
 
 ### Run
 
-Set `SECRET` if you're using GitHub webhook for continuous deployment.
-
 `node app.js`
+
+Set these if you're using GitHub webhook for continuous deployment.
+
+`SECRET` - your webhook secret.
+`REMOTE` - your remote to fetch from.
