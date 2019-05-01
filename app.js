@@ -157,7 +157,7 @@ app.post('/git', (req, res) => {
 
         for (const cmd of commands) {
             console.log(execSync(cmd).toString())
-        } 
+        }
         console.log('> [GIT] Updated with origin/master')
     } else {
         console.log('> Webhook signature incorrect!')
