@@ -36,6 +36,6 @@ Tested with: Jest, SuperTest.
 
 ### Run
 
-Set your `SECRET` if you're using GitHub webhook for continuous deployment.
+Set `SECRET` if you're using GitHub webhook for continuous deployment.
 
 `node app.js`
