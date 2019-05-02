@@ -154,7 +154,6 @@ app.post('/git', (req, res) => {
                           'git reset --hard origin/master',
                           'git pull origin master --force',
                           'refresh']
-
         for (const cmd of commands) {
             console.log(execSync(cmd).toString())
         }
