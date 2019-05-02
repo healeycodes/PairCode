@@ -3,6 +3,10 @@
 
 <head>
     <title>PairCode</title>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PairCode" />
+    <meta name="twitter:description" content="CodePen except smaller and faster. Low latency pair programming." />
+    <meta name="twitter:image" content="https://healeycodes.github.io/assets/paircode-twitter-card.png" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/main.css">
@@ -11,6 +15,11 @@
 </head>
 
 <body>
+    <div class="github-button-con">
+      <a class="github-button" href="https://github.com/healeycodes" data-size="large" aria-label="Follow @healeycodes on GitHub">Follow @healeycodes</a>
+      <a class="github-button" href="https://github.com/healeycodes/PairCode" data-icon="octicon-star" data-size="large" aria-label="Star healeycodes/PairCode on GitHub">Star</a>
+    </div>
+    </div>
     <div id="main">
         <div class="centered">
             <%if (popup) {%>
@@ -26,14 +35,15 @@
           <p>HTML/CSS/JS sandbox with real time collaboration!</p>
           <p>Instant preview updates. <b>create</b> and <b>fork</b> Code Rooms.</p>
           <p>Low latency remote pair programming powered by
-            <a href="https://socket.io/">Socket.IO.</a>
+            <a class="link" href="https://socket.io/">Socket.IO.</a>
           </p>
           <p>Open source project. Check out the
-            <a href="https://github.com/healeycodes/paircode">GitHub repo</a> and raise an issue!</p>
+            <a class="link" href="https://github.com/healeycodes/paircode">GitHub repo</a> and raise an issue!</p>
     <button id="create-room-btn" type="button" class="btn btn-light" onclick="window.location.href = '/new-room'">Create Room</button>
           <img class="splash-img img-fluid" src="/img/preview.png" title="Abstriangulation by Akimitsu Hamamuro">
     </div>
   </div>
+  <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 
 </html>
