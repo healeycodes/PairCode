@@ -145,16 +145,15 @@ app.get('/room/:roomId/fork', (req, res) => {
 
 // (SPECIAL) POST: Receive webhook from GitHub
 app.post('/git', (req, res) => {
-    const file = 'git.sh';
     const hmac = crypto.createHmac('sha1', process.env.SECRET)
     const sig  = 'sha1=' + hmac.update(JSON.stringify(req.body)).digest('hex')
     if (req.headers['x-github-event'] === 'push' ||
-        sig === req.headers['x-hub-signature']) {
+        crypto.timingSafeEqual(sig, req.headers['x-hub-signature'])) {
         const { execSync } = require('child_process');
         const commands = ['git fetch origin master',
                           'git reset --hard origin/master',
-                          'git pull origin master --force']
-
+                          'git pull origin master --force',
+                          'refresh']
         for (const cmd of commands) {
             console.log(execSync(cmd).toString())
         }
