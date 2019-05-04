@@ -18,7 +18,7 @@ Any code you enter will be streamed with your private room, character by charact
 
 Back end: Node.js, Express with EJS templates, socket.io, SQLite via Sequelize.
 
-Front end: HTML5/CSS3, JQuery, Bootstrap.
+Front end: HTML5/CSS3, JQuery, Bootstrap, Webpack w/ Babel.
 
 Tested with: Jest, SuperTest.
 
@@ -27,6 +27,8 @@ Tested with: Jest, SuperTest.
 ### Setup
 
 `npm install`
+
+`npm build`
 
 Inside `.env` set `URL` to the location on the web,. e.g., `localhost:3000`
 
