@@ -38,9 +38,10 @@ Tested with: Jest, SuperTest.
 
 `node app.js`
 
-##### If you're using GitHub webhook for continuous deployment:
+##### If you're using a GitHub webhook for continuous deployment to Glitch:
 
-Create remote branch using `git remote add origin {url}`.
+Create remote branch inside the container using `git remote add origin {url}`.
 
-Set `SECRET` to your webhook secret.
+Set up a GitHub webhook to hit `/git` with a secure signature of your secret.
 
+Set `SECRET` to your secret inside `.env`
