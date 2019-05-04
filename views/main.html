@@ -22,27 +22,31 @@
     </div>
     <div id="main">
         <div class="centered">
-            <%if (popup) {%>
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Error:</strong>
-                <%-popup-%>
-                <button type="button" class="close" data-dismiss="alert">
-                    <span>&times;</span>
-                </button>
-            </div>
-            <%}%>
-          <h3 id="heading">PairCode</h3>
-          <p>HTML/CSS/JS sandbox with real time collaboration!</p>
-          <p>Instant preview updates ~ <b>create</b> and <b>fork</b> Code Rooms.</p>
-          <p>Low latency remote pair programming powered by
-            <a class="link" href="https://socket.io/">Socket.IO.</a>
-          </p>
-          <p>Open source project. Check out the
-            <a class="link" href="https://github.com/healeycodes/paircode">GitHub repo</a> and raise an issue!</p>
-    <button id="create-room-btn" type="button" class="btn btn-light" onclick="window.location.href = '/new-room'">Create Room</button>
-          <a href="/demo/abstriangulation">
-            <img class="splash-img img-fluid" src="/img/preview.png" title="Abstriangulation by Akimitsu Hamamuro">
-          </a>
+            <div class="section-top">
+                <%if (popup) {%>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Error:</strong>
+                    <%-popup-%>
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <%}%>
+              <h3 id="heading">PairCode</h3>
+              <p>HTML/CSS/JS sandbox with real time collaboration!</p>
+              <p>Instant preview updates ~ <b>create</b> and <b>fork</b> Code Rooms.</p>
+              <p>Low latency remote pair programming powered by
+                <a class="link" href="https://socket.io/">Socket.IO.</a>
+              </p>
+              <p>Open source project. Check out the
+                <a class="link" href="https://github.com/healeycodes/paircode">GitHub repo</a> and raise an issue!</p>
+              <button id="create-room-btn" type="button" class="btn btn-light" onclick="window.location.href = '/new-room'">Create Room</button>
+          </div>
+          <div class="section-bottom">
+              <a href="/demo/abstriangulation">
+                <img class="splash-img img-fluid" src="/img/preview.png" title="Abstriangulation by Akimitsu Hamamuro">
+              </a>
+          </div>
     </div>
   </div>
   <script async defer src="https://buttons.github.io/buttons.js"></script>
