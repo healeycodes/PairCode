@@ -5,10 +5,10 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
-    "express": "^4.16.3",
+    "express": "^4.16.4",
     "friendly-words": "^1.1.5",
     "sequelize": "^4.37.10",
-    "sequelize-cli": "^4.0.0",
+    "sequelize-cli": "^5.4.0",
     "socket.io": "^2.1.1",
     "sqlite3": "^4.0.6"
   },
@@ -21,7 +21,7 @@
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "babel-loader": "^8.0.5",
-    "jest": "^23.1.0",
+    "jest": "^24.7.1",
     "supertest": "^3.1.0",
     "webpack": "^4.30.0",
     "webpack-cli": "^3.3.1"
