@@ -16,9 +16,7 @@ const crypto = require('crypto')
 
 // Express config
 app.use(express.static(__dirname + '/public/'))
-app.use('/img', express.static(__dirname + 'public/img'))
-app.use('/js', express.static(__dirname + 'public/js'))
-app.use('/css', express.static(__dirname + 'public/css'))
+app.use('/public', express.static(__dirname + 'public'))
 app.use('/favicon.ico', express.static(__dirname + 'public/favicon.ico'))
 app.set('views', __dirname + '/views')
 app.engine('html', ejs)
@@ -168,6 +166,7 @@ app.post('/git', (req, res) => {
         const commands = ['git fetch origin master',
                           'git reset --hard origin/master',
                           'git pull origin master --force',
+                          'npm build',
                           'refresh'] // Fixes Glitch UI
         for (const cmd of commands) {
             console.log(execSync(cmd).toString())

@@ -4,6 +4,8 @@
 
 A CodePen clone (but _faster_). Mostly because I love __pair programming__. _Powered by socket.io and Node.js._
 
+Now with continuous deployment via GitHub webhook 🔨, and continuous integration with Travis CI ✅.
+
 <br>
 
 ![alt text](https://raw.githubusercontent.com/healeycodes/paircode/master/public/img/preview.png "Image of a room on Deux Codes")
@@ -22,9 +24,11 @@ Tested with: Jest, SuperTest.
 
 <br>
 
-### Build
+### Setup
 
-`npm install --save`
+`npm install`
+
+Inside `.env` set `URL` to the location on the web,. e.g., `localhost:3000`
 
 <br>
 
@@ -36,11 +40,14 @@ Tested with: Jest, SuperTest.
 
 ### Run
 
-`node app.js`
+`npm start`
 
-##### If you're using GitHub webhook for continuous deployment:
+<br>
 
-Create remote branch using `git remote add origin {url}`.
+##### If you're using a GitHub webhook for continuous deployment to Glitch:
 
-Set `SECRET` to your webhook secret.
+Create remote branch inside the container using `git remote add origin {url}`.
 
+Set up a GitHub webhook to hit `/git` with a secure signature of your secret.
+
+Set `SECRET` to your secret inside `.env`
