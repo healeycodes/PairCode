@@ -11,6 +11,7 @@ const ejs = require('ejs').renderFile
 const app = express()
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
+const demos = require('./demos')
 const crypto = require('crypto')
 
 // Express config
@@ -55,6 +56,20 @@ app.get('/new-room', (req, res) => {
             html: "",
             css: "",
             js: ""
+        })
+        .then(() => res.redirect('/room/' + newRoomId))
+        .catch(error => console.log(error))
+})
+
+// GET: Create demo room
+app.get('/demo/:demoId', (req, res) => {
+    const newRoomId = rndID()
+    const demo = demos[req.params.demoId]
+    let newRoom = models.Room.create({
+            roomid: newRoomId,
+            html: demo.html,
+            css: demo.css,
+            js: demo.js
         })
         .then(() => res.redirect('/room/' + newRoomId))
         .catch(error => console.log(error))
