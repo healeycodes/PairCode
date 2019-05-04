@@ -64,9 +64,8 @@ h6 {
 }
 
 #create-room-btn {
-    animation: shake 1s;
-    animation-delay: .5s;
-    animation-iteration-count: 1;
+    margin-top: 10px;
+    animation: float 6s ease-in-out infinite;
 }
 
 .github-button-con {
@@ -75,16 +74,30 @@ h6 {
     top: 10px;
 }
 
-@keyframes shake {
-    0% { transform: translate(.5px, .5px) rotate(0deg); }
-    10% { transform: translate(-.5px, -.5px) rotate(-1deg); }
-    20% { transform: translate(-.5px, .5px) rotate(1deg); }
-    30% { transform: translate(.5px, .5px) rotate(0deg); }
-    40% { transform: translate(.5px, -.5px) rotate(1deg); }
-    50% { transform: translate(-.5px, .5px) rotate(-1deg); }
-    60% { transform: translate(-.5px, .5px) rotate(0deg); }
-    70% { transform: translate(.5px, .5px) rotate(-1deg); }
-    80% { transform: translate(-.5px, -.5px) rotate(1deg); }
-    90% { transform: translate(.5px, .5px) rotate(0deg); }
-    100% { transform: translate(.5px, -.5px) rotate(-1deg); }
+.section-top {
+    animation: fadein 1s;
+}
+
+.section-bottom {
+    animation: fadein 2s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes float {
+    0% {
+        box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+        transform: translatey(0px);
+    }
+     50% {
+        box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+        transform: translatey(-10px);
+    }
+    100% {
+        box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+        transform: translatey(0px);
+    }
 }
