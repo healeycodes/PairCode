@@ -4,9 +4,9 @@
 
 A CodePen clone (but _faster_). Mostly because I love __pair programming__. _Powered by socket.io and Node.js._
 
-<br>
-
 Now with continuous deployment via GitHub webhook 🔨, and continuous integration with Travis CI ✅.
+
+<br>
 
 ![alt text](https://raw.githubusercontent.com/healeycodes/paircode/master/public/img/preview.png "Image of a room on Deux Codes")
 
