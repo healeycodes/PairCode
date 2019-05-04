@@ -2,7 +2,7 @@
 
 ## PairCode ~ https://paircode.glitch.me
 
-A CodePen clone (but _faster_). Mostly because I love __pair programming__. _Powered by socket.io and Node.js._
+A CodePen clone (but _faster_). Mostly because I love __pair programming__.
 
 Now with continuous deployment via GitHub webhook 🔨, and continuous integration with Travis CI ✅.
 
@@ -11,6 +11,8 @@ Now with continuous deployment via GitHub webhook 🔨, and continuous integrati
 - Join a code room with your team and view changes as they happen.
 - Fork rooms, or delete them if you don't like your creation.
 - Rooms are automatically saved every half-second after editing.
+
+<br>
 
 ![alt text](https://raw.githubusercontent.com/healeycodes/paircode/master/public/img/preview.png "Image of a room on Deux Codes")
 
