@@ -153,7 +153,7 @@ app.post('/git', (req, res) => {
         const commands = ['git fetch origin master',
                           'git reset --hard origin/master',
                           'git pull origin master --force',
-                          'refresh']
+                          'refresh'] // Fixes Glitch UI
         for (const cmd of commands) {
             console.log(execSync(cmd).toString())
         }
