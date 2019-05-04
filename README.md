@@ -8,9 +8,11 @@ Now with continuous deployment via GitHub webhook 🔨, and continuous integrati
 
 <br>
 
-![alt text](https://raw.githubusercontent.com/healeycodes/paircode/master/public/img/preview.png "Image of a room on Deux Codes")
+- Join a code room with your team and view changes as they happen.
+- Fork rooms, or delete them if you don't like your creation.
+- Rooms are automatically saved every half-second after editing.
 
-Any code you enter will be streamed with your private room, character by character. As a user's code area is changed, their preview iframe will follow, keeping everyone in sync. You can fork or delete rooms, and import any external scripts you need via `<script>` tags. Rooms are automatically saved every half-second.
+![alt text](https://raw.githubusercontent.com/healeycodes/paircode/master/public/img/preview.png "Image of a room on Deux Codes")
 
 <br>
 
