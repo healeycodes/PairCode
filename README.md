@@ -26,7 +26,7 @@ Tested with: Jest, SuperTest.
 
 ### Setup
 
-`npm install --save`
+`npm install`
 
 Inside `.env` set `URL` to the location on the web,. e.g., `localhost:3000`
 
@@ -40,7 +40,9 @@ Inside `.env` set `URL` to the location on the web,. e.g., `localhost:3000`
 
 ### Run
 
-`node app.js`
+`npm start`
+
+<br>
 
 ##### If you're using a GitHub webhook for continuous deployment to Glitch:
 
