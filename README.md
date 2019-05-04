@@ -14,7 +14,7 @@ Now with continuous deployment via GitHub webhook 🔨, and continuous integrati
 
 <br>
 
-![alt text](https://raw.githubusercontent.com/healeycodes/paircode/master/public/img/preview.png "Image of a room on Deux Codes")
+![alt text](https://raw.githubusercontent.com/healeycodes/paircode/master/public/img/preview.jpg "Image of a room on Deux Codes")
 
 <br>
 
