@@ -59,10 +59,14 @@ h6 {
     opacity: .75;
 }
 
+.splash-img:hover {
+    opacity: .9;
+}
+
 #create-room-btn {
     animation: shake 1s;
     animation-delay: .5s;
-    animation-iteration-count: .5;
+    animation-iteration-count: 1;
 }
 
 .github-button-con {
