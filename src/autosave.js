@@ -10,7 +10,7 @@ const saveTime = 500;
 let roomId = 'not_set';
 
 // The last data we saved, used to reduce update calls
-const lastSave = {
+let lastSave = {
     html: '',
     css: '',
     js: ''
@@ -56,7 +56,8 @@ const timedSave = () => {
         })
         .then(res => res.text())
         .then(text => {
-            postMessage(text);
+            postMessage(text.replace(/"/g, ''));
+            lastSave = dataToBeSaved;
             setTimeout(timedSave, saveTime);
         });
     } else {
