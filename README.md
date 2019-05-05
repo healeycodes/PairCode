@@ -32,7 +32,7 @@ Tested with: Jest, SuperTest.
 
 `npm install`
 
-`npm build`
+`npm run-script build`
 
 Inside `.env` set `URL` to the location on the web,. e.g., `localhost:3000`
 
