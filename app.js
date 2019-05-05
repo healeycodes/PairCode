@@ -4,74 +4,74 @@
  * Back end: Node.js, Express with EJS, Sequelize (SQLite)
  * Testing: Jest
  */
-const express = require('express')
-const bodyParser = require('body-parser')
+const express = require('express');
+const bodyParser = require('body-parser');
 const friendlyWords = require('friendly-words');
-const ejs = require('ejs').renderFile
-const app = express()
-const http = require('http').createServer(app)
-const io = require('socket.io')(http)
-const demos = require('./demos')
-const crypto = require('crypto')
+const ejs = require('ejs').renderFile;
+const app = express();
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
+const demos = require('./demos');
+const crypto = require('crypto');
 
 // Express config
-app.use(express.static(__dirname + '/public/'))
-app.use('/public', express.static(__dirname + 'public'))
-app.use('/favicon.ico', express.static(__dirname + 'public/favicon.ico'))
-app.set('views', __dirname + '/views')
-app.engine('html', ejs)
-app.set('view engine', 'html')
+app.use(express.static(__dirname + '/public/'));
+app.use('/public', express.static(__dirname + 'public'));
+app.use('/favicon.ico', express.static(__dirname + 'public/favicon.ico'));
+app.set('views', __dirname + '/views');
+app.engine('html', ejs);
+app.set('view engine', 'html');
 app.use(bodyParser.json());
 
 // Database
-const models = require('./models')
+const models = require('./models');
 
 // Website Url
-const url = process.env.URL
+const url = process.env.URL;
 
 // Friendly random id
 const rndID = () => {
-    const pick = arr => arr[Math.floor(Math.random() * arr.length)]
-    return `${pick(friendlyWords.predicates)}-${pick(friendlyWords.objects)}-${pick(friendlyWords.objects)}`
+    const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+    return `${pick(friendlyWords.predicates)}-${pick(friendlyWords.objects)}-${pick(friendlyWords.objects)}`;
 }
 
 
 // GET: Home Page
 app.get('/', (req, res) => res.render('main.html', {
     popup: ""
-}))
+}));
 
 // Error Page
 const errorPage = (res, error = "Unspecified error.") => res.render('main.html', {
     popup: error
-})
+});
 
 // GET: Create room
 app.get('/new-room', (req, res) => {
-    const newRoomId = rndID()
-    let newRoom = models.Room.create({
+    const newRoomId = rndID();
+    models.Room.create({
             roomid: newRoomId,
             html: "",
             css: "",
             js: ""
         })
         .then(() => res.redirect('/room/' + newRoomId))
-        .catch(error => console.log(error))
-})
+        .catch(error => console.log(error));
+});
 
 // GET: Create demo room
 app.get('/demo/:demoId', (req, res) => {
-    const newRoomId = rndID()
+    const newRoomId = rndID();
     const demo = demos[req.params.demoId]
-    let newRoom = models.Room.create({
+    models.Room.create({
             roomid: newRoomId,
             html: demo.html,
             css: demo.css,
             js: demo.js
         })
         .then(() => res.redirect('/room/' + newRoomId))
-        .catch(error => console.log(error))
-})
+        .catch(error => console.log(error));
+});
 
 // GET: Join room
 app.get('/room/:roomId', (req, res) => {
@@ -93,15 +93,15 @@ app.get('/room/:roomId', (req, res) => {
                     srcdoc: `${String(room.html)}<style>${String(room.css)}</style><script>${String(room.js)}</script>`
                 })
             } else {
-                errorPage(res, "No room by that ID.")
+                errorPage(res, "No room by that ID.");
             }
         })
-        .catch(error => console.log(error))
+        .catch(error => console.log(error));
 })
 
 // POST: Save room
 app.post('/room/:roomId/save', (req, res) => {
-    const json = req.body
+    const json = req.body;
     models.Room.update({
             html: json.html,
             css: json.css,
@@ -113,12 +113,12 @@ app.post('/room/:roomId/save', (req, res) => {
         })
         // Send timestamp
         .then(res.send(JSON.stringify(new Date().toISOString().replace('T', ' ').substr(0, 19))))
-        .catch(error => console.log(error))
+        .catch(error => console.log(error));
 })
 
 // GET: Delete room
 app.get('/room/:roomId/delete', (req, res) => {
-    const roomId = req.params.roomId
+    const roomId = req.params.roomId;
     models.Room.destroy({
             where: {
                 roomid: roomId
@@ -126,12 +126,12 @@ app.get('/room/:roomId/delete', (req, res) => {
             force: true
         })
         .then(res.redirect('/'))
-        .catch(error => console.log(error))
+        .catch(error => console.log(error));
 })
 
 // GET: Fork room
 app.get('/room/:roomId/fork', (req, res) => {
-    const newRoomId = rndID()
+    const newRoomId = rndID();
     // Room should always be in DB, else send to error page
     models.Room.findOne({
             where: {
@@ -147,19 +147,19 @@ app.get('/room/:roomId/fork', (req, res) => {
                         js: String(room.js)
                     })
                     .then(() => res.redirect('/room/' + newRoomId))
-                    .catch(error => console.log(error))
+                    .catch(error => console.log(error));
             } else {
-                errorPage(res, "Trying to fork an unknown room.")
+                errorPage(res, "Trying to fork an unknown room.");
             }
         })
-        .catch(error => console.log(error))
+        .catch(error => console.log(error));
 })
 
 
 // (SPECIAL) POST: Receive webhook from GitHub
 app.post('/git', (req, res) => {
-    const hmac = crypto.createHmac('sha1', process.env.SECRET)
-    const sig  = 'sha1=' + hmac.update(JSON.stringify(req.body)).digest('hex')
+    const hmac = crypto.createHmac('sha1', process.env.SECRET);
+    const sig  = 'sha1=' + hmac.update(JSON.stringify(req.body)).digest('hex');
     if (req.headers['x-github-event'] === 'push' ||
         crypto.timingSafeEqual(sig, req.headers['x-hub-signature'])) {
         const { execSync } = require('child_process');
@@ -168,13 +168,13 @@ app.post('/git', (req, res) => {
                           'git pull origin master --force',
                           'npm install',
                           'npm run-script build',
-                          'refresh'] // Fixes Glitch UI
+                          'refresh']; // Fixes Glitch UI
         for (const cmd of commands) {
-            console.log(execSync(cmd).toString())
+            console.log(execSync(cmd).toString());
         }
-        console.log('> [GIT] Updated with origin/master')
+        console.log('> [GIT] Updated with origin/master');
     } else {
-        console.log('> Webhook signature incorrect!')
+        console.log('> Webhook signature incorrect!');
     }
     return res.sendStatus(200);
 });
@@ -183,32 +183,32 @@ app.post('/git', (req, res) => {
 io.on('connection', (socket) => {
     socket.on('join-room', (msg) => {
         if (msg.roomId) {
-            socket.join(msg.roomId)
+            socket.join(msg.roomId);
         }
-    })
+    });
     socket.on('update', (msg) => {
         if (msg.roomId && msg.data) {
-            socket.broadcast.to(msg.roomId).emit('update', msg.data)
+            socket.broadcast.to(msg.roomId).emit('update', msg.data);
         }
-    })
+    });
     socket.on('_ping', (msg) => {
-        let room
+        let room;
         if (msg.roomId) {
-            room = io.sockets.adapter.rooms[msg.roomId]
+            room = io.sockets.adapter.rooms[msg.roomId];
         }
-        let roomCount
+        let roomCount;
         // Check for undefined room, e.g., if the pinger just left
         if (room) {
-            roomCount = room.length
+            roomCount = room.length;
         } else {
-            roomCount = 0
+            roomCount = 0;
         }
         socket.emit('_pong', {
             time: msg.time,
             roomCount: roomCount
-        })
-    })
-})
+        });
+    });
+});
 
 module.exports = {
     app: app,
