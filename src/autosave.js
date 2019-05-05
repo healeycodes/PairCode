@@ -48,7 +48,7 @@ const timedSave = () => {
     if (lastSave.html != dataToBeSaved.html || lastSave.css != dataToBeSaved.css || lastSave.js != dataToBeSaved.js) {
         // Send data, store the data we saved, reply to the main thread
         fetch(`/room/${roomId}/save`, {
-            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
