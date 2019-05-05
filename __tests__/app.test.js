@@ -73,13 +73,13 @@ describe('app', () => {
         });
     });
   
-    afterAll(() => {
+    afterAll(async () => {
       // Wait for verbose SQL logging to complete
       function delay(t, v) {
          return new Promise(function(resolve) { 
              setTimeout(resolve.bind(null, v), t)
          });
       }
-      return delay(500).then(() => true);
+      return await delay(5000).then(() => true);
     });
 });
