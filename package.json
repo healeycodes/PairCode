@@ -15,7 +15,7 @@
   "scripts": {
     "build": "npx webpack --config webpack.config.js",
     "start": "node server.js",
-    "test": "jest --detectOpenHandles"
+    "test": "jest --forceExit"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
