@@ -80,6 +80,6 @@ describe('app', () => {
              setTimeout(resolve.bind(null, v), t)
          });
       }
-      return delay(3000).then(() => true);
+      return delay(500).then(() => true);
     });
 });
