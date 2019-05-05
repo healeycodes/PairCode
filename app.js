@@ -166,7 +166,8 @@ app.post('/git', (req, res) => {
         const commands = ['git fetch origin master',
                           'git reset --hard origin/master',
                           'git pull origin master --force',
-                          'npm build',
+                          'npm install',
+                          'npm run-script build',
                           'refresh'] // Fixes Glitch UI
         for (const cmd of commands) {
             console.log(execSync(cmd).toString())

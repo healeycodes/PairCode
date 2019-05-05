@@ -38,10 +38,8 @@ self.addEventListener('message', (e) => {
 
 // Time looped save function
 const timedSave = () => {
-    // What we will reply to the main thread
-    let response = "";
     // Store data to be saved in case currentData updates during the POST and there's a desync
-    let dataToBeSaved = {
+    const dataToBeSaved = {
         html: currentData.html,
         css: currentData.css,
         js: currentData.js
@@ -49,21 +47,18 @@ const timedSave = () => {
     // If we have new data to save
     if (lastSave.html != dataToBeSaved.html || lastSave.css != dataToBeSaved.css || lastSave.js != dataToBeSaved.js) {
         // Send data, store the data we saved, reply to the main thread
-        var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open('POST', '/room/' + roomId + '/save');
-        xmlhttp.setRequestHeader('Content-Type', 'application/json');
-        xmlhttp.send(JSON.stringify(dataToBeSaved));
-        xmlhttp.onreadystatechange = () => {
-            if (xmlhttp.readyState === 4 && xmlhttp.status === 200) {
-                lastSave.html = dataToBeSaved.html;
-                lastSave.css = dataToBeSaved.css;
-                lastSave.js = dataToBeSaved.js;
-                // Reply to the main thread
-                postMessage(JSON.parse(xmlhttp.responseText));
-                // Check again later
-                setTimeout(timedSave, saveTime);
-            }
-        }
+        fetch(`/room/${roomId}/save`, {
+            method: "POST", // *GET, POST, PUT, DELETE, etc.
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(dataToBeSaved),
+        })
+        .then(res => res.text())
+        .then(text => {
+            postMessage(text);
+            setTimeout(timedSave, saveTime);
+        });
     } else {
         // Check again later for new data
         setTimeout(timedSave, saveTime);
