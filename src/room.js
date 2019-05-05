@@ -29,7 +29,7 @@ const page = {
 const user = {
     id: 'not_set'
 }
-const setId = (id) => user.id = id
+const setId = (id) => user.id = id;
 
 // Update iframe. Uses srcdoc-polyfill library
 const cycleFrame = () => {
@@ -71,7 +71,7 @@ $(document).ready(() => {
     // Update the preview to the last save point
     const liveFrame = document.getElementById('live-frame');
     const oldContent = $('#data').attr('data-page');
-    srcDoc.set(liveFrame, oldContent);
+    srcDoc.set(liveFrame, oldContent); // external lib
 
     // Store roomId
     roomId = $('#data').attr('data-roomid');
@@ -93,28 +93,25 @@ $(document).ready(() => {
     }
 
     // Socket.IO
-    const socket = io();
+    const socket = io(); // external lib
     socket.emit('join-room', {
         roomId: roomId
     });
-
-    $(() => {
-        socket.on('connect', () => {
-            setId(socket.id);
-        })
-        socket.on('update', (msg) => {
-            checkIfNew(msg);
-        })
-        socket.on('_pong', (msg) => {
-            $('#ping').text(`${msg.roomCount} in room / ping: ${Date.now() - msg.time}ms`);
-        })
+    socket.on('connect', () => {
+        setId(socket.id);
     })
-
+    socket.on('update', (msg) => {
+        checkIfNew(msg);
+    })
+    socket.on('_pong', (msg) => {
+        $('#ping').text(`${msg.roomCount} in room / ping: ${Date.now() - msg.time}ms`);
+    })
+    
     // Listen to all three textareas
     $('textarea').bind('change keypress input textInput paste', () => {
-        let html = $('#html textarea').val();
-        let css = $('#css textarea').val();
-        let js = $('#js textarea').val();
+        const html = $('#html textarea').val();
+        const css = $('#css textarea').val();
+        const js = $('#js textarea').val();
 
         // If nothing has changed, perform no actions
         if (html == page.html && css == page.css && js == page.js) {
@@ -138,15 +135,15 @@ $(document).ready(() => {
                 js: js
             },
             roomId: roomId
-        })
+        });
 
         // Send data to be saved
         autosave.postMessage({
             html: html,
             css: css,
             js: js
-        })
-    })
+        });
+    });
 
     // Delete button
     $('#delete-btn').click(() => window.location.replace(`/room/${roomId}/delete`));
@@ -159,13 +156,13 @@ $(document).ready(() => {
 
     // Pings the server every x milliseconds
     // Also returns room count
-    ping = () => {
+    const ping = () => {
         socket.emit('_ping', {
             time: Date.now(),
             roomId: roomId,
             roomCount: null
         })
-        setTimeout('ping()', 2000);
+        setTimeout(ping, 2000);
     }
     ping();
 })

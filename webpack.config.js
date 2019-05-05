@@ -2,8 +2,8 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    room: path.resolve(__dirname, 'public/js/room.js'),
-    autosave: path.resolve(__dirname, 'public/js/autosave.js')
+    room: path.resolve(__dirname, 'src/room.js'),
+    autosave: path.resolve(__dirname, 'src/autosave.js')
   },
   output: {
       filename: '[name].js',
@@ -20,5 +20,6 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  mode: 'production'
 };
