@@ -14,7 +14,7 @@ describe('app', () => {
 
     describe('Testing root path', () => {
         test('It should respond to the GET method with code 200', () => {
-            return request(app).get('/').expect(200)
+            return request(app).get('/').expect(200);
         });
     });
 
@@ -29,7 +29,8 @@ describe('app', () => {
             request(app).get('/new-room')
                 .then(res => {
                     return expect(res.header.location).toMatch(/room/)
-                });
+                })
+                .catch(err => new Error(err.message));
         });
     });
 
@@ -39,7 +40,8 @@ describe('app', () => {
                 .then(res => request(app).get(res.header.location))
                 .then(roomRes => {
                     return expect(roomRes.text).toMatch(new RegExp(res.header.location.split("/")[2]));
-                });
+                })
+                .catch(err => new Error(err.message));
         });
     });
 
@@ -52,17 +54,32 @@ describe('app', () => {
         });
         describe('A room is created during this route', () => {
             it('Creates a Room', () => {
+                let initialRes = null;
                 request(app).get('/new-room')
-                    .then(res => request(app).get(res.header.location))
+                    .then(res => {
+                      initialRes = res;
+                      request(app).get(res.header.location);
+                    })
                     .then(() => this.Room.findOne({
                         where: {
-                            roomid: res.header.location.split("/")[2]
+                            roomid: initialRes.header.location.split("/")[2]
                         }
                     }))
                     .then(room => {
                         return expect(room).not.toBeNull();
-                    });
+                    })
+                    .catch(err => new Error(err.message));
             });
         });
+    });
+  
+    afterAll(() => {
+      // Wait for verbose SQL logging to complete
+      function delay(t, v) {
+         return new Promise(function(resolve) { 
+             setTimeout(resolve.bind(null, v), t)
+         });
+      }
+      return delay(3000).then(() => true);
     });
 });
