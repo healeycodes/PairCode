@@ -13,6 +13,7 @@ const http = require('http').createServer(app);
 const io = require('socket.io')(http);
 const demos = require('./demos');
 const crypto = require('crypto');
+const { execSync } = require('child_process');
 
 // Express config
 app.use(express.static(__dirname + '/public/'));
@@ -162,7 +163,7 @@ app.post('/git', (req, res) => {
     const sig  = 'sha1=' + hmac.update(JSON.stringify(req.body)).digest('hex');
     if (req.headers['x-github-event'] === 'push' ||
         crypto.timingSafeEqual(sig, req.headers['x-hub-signature'])) {
-        const { execSync } = require('child_process');
+        res.sendStatus(200);
         const commands = ['git fetch origin master',
                           'git reset --hard origin/master',
                           'git pull origin master --force',
@@ -173,10 +174,11 @@ app.post('/git', (req, res) => {
             console.log(execSync(cmd).toString());
         }
         console.log('> [GIT] Updated with origin/master');
+        return;
     } else {
         console.log('> Webhook signature incorrect!');
+        return res.sendStatus(403);
     }
-    return res.sendStatus(200);
 });
 
 // Socket.IO
