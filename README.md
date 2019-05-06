@@ -4,7 +4,7 @@
 
 A CodePen clone (but _faster_). Mostly because I love __pair programming__.
 
-Now with continuous deployment via GitHub webhook 🔨, and continuous integration with Travis CI ✅.
+*Now with continuous deployment via GitHub webhook 🔨, and continuous integration with Travis CI ✅.*
 
 <br>
 
