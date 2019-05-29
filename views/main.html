@@ -3,11 +3,12 @@
 
 <head>
     <title>PairCode</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="PairCode" />
     <meta name="twitter:description" content="CodePen except smaller and faster. Low latency pair programming." />
     <meta name="twitter:image" content="https://healeycodes.github.io/assets/paircode-twitter-card.png" />
-    <link async href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Permanent+Marker&display=swap" rel="stylesheet">
     <link async rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link async rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
@@ -18,7 +19,7 @@
       <a class="github-button" href="https://github.com/healeycodes/PairCode" data-icon="octicon-star" data-size="large" aria-label="Star healeycodes/PairCode on GitHub">Star</a>
     </div>
     </div>
-    <div id="main">
+    <div class="main">
         <div class="centered">
             <div class="section-top">
                 <%if (popup) {%>
@@ -30,7 +31,7 @@
                     </button>
                 </div>
                 <%}%>
-              <h3 id="heading">PairCode</h3>
+              <h1 class="heading">PairCode</h1>
               <p>HTML/CSS/JS sandbox with real time collaboration!</p>
               <p>Instant preview updates ~ <b>create</b> and <b>fork</b> Code Rooms.</p>
               <p>Low latency remote pair programming powered by
@@ -38,7 +39,7 @@
               </p>
               <p>Open source project. Check out the
                 <a class="link" href="https://github.com/healeycodes/paircode">GitHub repo</a> and raise an issue!</p>
-              <button id="create-room-btn" type="button" class="btn btn-light" onclick="window.location.href = '/new-room'">Create Room</button>
+              <button type="button" class="btn btn-lg btn-light create-room-btn" onclick="window.location.href = '/new-room'">Create Room</button>
           </div>
           <div class="section-bottom">
               <a href="/demo/abstriangulation">
@@ -47,7 +48,7 @@
           </div>
     </div>
   </div>
-  <script async src="/js/jquery.min.js"></script>
+  <script src="/js/jquery.min.js"></script>
   <script async src="/js/bootstrap.bundle.min.js"></script>
   <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>

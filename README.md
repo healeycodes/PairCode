@@ -4,7 +4,7 @@
 
 A CodePen clone (but _faster_). Mostly because I love __pair programming__.
 
-Now with continuous deployment via GitHub webhook 🔨, and continuous integration with Travis CI ✅.
+*Now with continuous deployment via GitHub webhook 🔨, and continuous integration with Travis CI ✅.*
 
 <br>
 
@@ -14,7 +14,7 @@ Now with continuous deployment via GitHub webhook 🔨, and continuous integrati
 
 <br>
 
-![alt text](https://raw.githubusercontent.com/healeycodes/paircode/master/public/img/preview.jpg "Image of a room on Deux Codes")
+![preview image](https://raw.githubusercontent.com/healeycodes/paircode/master/public/img/preview.jpg "Image of a room on Deux Codes")
 
 <br>
 
