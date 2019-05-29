@@ -54,6 +54,7 @@ p {
 }
 
 .splash-img {
+  max-width: 90%;
   opacity: .75;
 }
 
