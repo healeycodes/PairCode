@@ -1,10 +1,19 @@
-body,
-html {
+body {
     font-family: 'Open Sans', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: #2f4f4f;
     color: #f0f8ff;
+}
+
+p {
+  font-size: 1.3em;
+}
+
+.main {
+    width: 1000px;
+    margin: auto;
+    margin-top: 20px;
 }
 
 .link,
@@ -19,40 +28,30 @@ html {
     color: #f0f8ff;
 }
 
-#main {
-    width: 1000px;
-    margin: auto;
-    margin-top: 100px;
-}
 
 .centered {
     text-align: center;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: 'Roboto Slab', serif;
-    letter-spacing: 2px;
+.heading {
+    font-size: 6em;
+    font-family: 'Permanent Marker', cursive;
 }
 
-#heading {
+.heading {
     margin-bottom: 20px;
 }
 
-#create-room-con {
+.create-room-con {
     margin-left: 195px;
 }
 
-#create-room-btn {
+.create-room-btn {
     margin: 10px 0 25px 0;
 }
 
 .alert {
-    margin: 0 300px 20px 300px;
+    margin: 0 350px 20px 350px;
 }
 
 .splash-img {
@@ -63,7 +62,8 @@ h6 {
     opacity: .9;
 }
 
-#create-room-btn {
+.create-room-btn {
+    font-size: 1.5em;
     margin-top: 10px;
     animation: float 6s ease-in-out infinite;
 }
@@ -100,4 +100,10 @@ h6 {
         box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
         transform: translatey(0px);
     }
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 1.3em;
+  }
 }
