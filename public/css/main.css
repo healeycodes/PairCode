@@ -1,9 +1,9 @@
 body {
-    font-family: 'Open Sans', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    background-color: #2f4f4f;
-    color: #f0f8ff;
+  font-family: 'Open Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #2f4f4f;
+  color: #f0f8ff;
 }
 
 p {
@@ -11,99 +11,106 @@ p {
 }
 
 .main {
-    width: 1000px;
-    margin: auto;
-    margin-top: 20px;
+  width: 100vw;
+  margin: auto;
+  margin-top: 20px;
 }
 
 .link,
 .link:hover,
 .link:link {
-    color: #f0f8ff;
-    text-decoration: underline;
+  color: #f0f8ff;
+  text-decoration: underline;
 }
 
 .link:visited,
 .link:active {
-    color: #f0f8ff;
+  color: #f0f8ff;
 }
-
 
 .centered {
-    text-align: center;
+  text-align: center;
 }
 
 .heading {
-    font-size: 6em;
-    font-family: 'Permanent Marker', cursive;
+  font-size: 6em;
+  font-family: 'Permanent Marker', cursive;
 }
 
 .heading {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .create-room-con {
-    margin-left: 195px;
+  margin-left: 195px;
 }
 
 .create-room-btn {
-    margin: 10px 0 25px 0;
+  margin: 10px 0 25px 0;
 }
 
 .alert {
-    margin: 0 350px 20px 350px;
+  margin: 0 350px 20px 350px;
 }
 
 .splash-img {
-    opacity: .75;
+  opacity: .75;
 }
 
 .splash-img:hover {
-    opacity: .9;
+  opacity: .9;
 }
 
 .create-room-btn {
-    font-size: 1.5em;
-    margin-top: 10px;
-    animation: float 6s ease-in-out infinite;
+  font-size: 1.5em;
+  margin-top: 10px;
+  animation: float 6s ease-in-out infinite;
 }
 
 .github-button-con {
-    position: absolute;
-    left: 10px;
-    top: 10px;
+  position: absolute;
+  left: 10px;
+  top: 10px;
 }
 
 .section-top {
-    animation: fadein 1s;
+  animation: fadein 1s;
 }
 
 .section-bottom {
-    animation: fadein 2s;
+  animation: fadein 2s;
 }
 
 @keyframes fadein {
-    from { opacity: 0; }
-    to   { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @keyframes float {
-    0% {
-        box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
-        transform: translatey(0px);
-    }
-     50% {
-        box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
-        transform: translatey(-7px);
-    }
-    100% {
-        box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
-        transform: translatey(0px);
-    }
+  0% {
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    transform: translatey(0px);
+  }
+  50% {
+    box-shadow: 0 25px 15px 0px rgba(0, 0, 0, 0.2);
+    transform: translatey(-7px);
+  }
+  100% {
+    box-shadow: 0 5px 15px 0px rgba(0, 0, 0, 0.6);
+    transform: translatey(0px);
+  }
 }
 
 @media only screen and (max-width: 600px) {
   body {
-    font-size: 1.3em;
+    padding-top: 35px;
+    font-size: 0.5em;
+  }
+  .create-room-btn {
+    font-size: 1.75em;
   }
 }
