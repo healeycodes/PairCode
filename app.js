@@ -2,7 +2,7 @@
  * app.js
  * The application logic for PairCode
  * Back end: Node.js, Express with EJS, Sequelize (SQLite)
- * Testing: Jest
+ * Testing: Jest, Travis CI
  */
 const express = require('express');
 const bodyParser = require('body-parser');
