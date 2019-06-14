@@ -54,6 +54,7 @@ p {
 }
 
 .splash-img {
+  border-radius: 5px;
   max-width: 90%;
   opacity: .75;
 }
