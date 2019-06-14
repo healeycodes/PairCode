@@ -35,6 +35,9 @@ p {
 .heading {
   font-size: 6em;
   font-family: 'Permanent Marker', cursive;
+}
+
+.heading {
   margin-bottom: 20px;
 }
 
@@ -47,7 +50,9 @@ p {
 }
 
 .alert {
-  margin: 0 350px 20px 350px;
+  margin-top: 5%;
+  width: 50%;
+  left: 25%;
 }
 
 .splash-img {
