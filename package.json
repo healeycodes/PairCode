@@ -1,16 +1,16 @@
 {
   "name": "PairCode",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A HTML/CSS/JS sandbox with real time pair coding. Powered by socket.io and Node.js.",
   "dependencies": {
-    "body-parser": "^1.18.3",
-    "ejs": "^2.6.1",
-    "express": "^4.16.4",
-    "friendly-words": "^1.1.5",
-    "sequelize": "^4.37.10",
-    "sequelize-cli": "^5.4.0",
-    "socket.io": "^2.1.1",
-    "sqlite3": "^4.0.6"
+    "body-parser": "^1.19.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "friendly-words": "^1.1.10",
+    "sequelize": "^5.21.0",
+    "sequelize-cli": "^5.5.1",
+    "socket.io": "^2.3.0",
+    "sqlite3": "^4.1.1"
   },
   "scripts": {
     "build": "npx webpack --config webpack.config.js",
