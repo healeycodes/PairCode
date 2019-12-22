@@ -1,16 +1,14 @@
-[![Build Status](https://travis-ci.org/healeycodes/PairCode.svg?branch=master)](https://travis-ci.org/healeycodes/PairCode)
 
 ## PairCode ~ https://paircode.glitch.me
 
 A CodePen clone (but _faster_). Mostly because I love __pair programming__.
 
-*Now with continuous deployment via GitHub webhook 🔨, and continuous integration with Travis CI ✅.*
+[![Build Status](https://travis-ci.org/healeycodes/PairCode.svg?branch=master)](https://travis-ci.org/healeycodes/PairCode)
 
 <br>
 
 - Join a code room with your team and view changes as they happen.
 - Fork rooms, or delete them if you don't like your creation.
-- Rooms are automatically saved every half-second after editing.
 
 <br>
 
@@ -22,7 +20,7 @@ A CodePen clone (but _faster_). Mostly because I love __pair programming__.
 
 Back end: Node.js, Express with EJS templates, socket.io, SQLite via Sequelize.
 
-Front end: HTML5/CSS3, JQuery, Bootstrap, Webpack w/ Babel.
+Front end: HTML5/CSS3, JavaScript(ES6+), Webpack w/ Babel.
 
 Tested with: Jest, SuperTest.
 
@@ -48,12 +46,6 @@ Inside `.env` set `URL` to the location on the web,. e.g., `localhost:3000`
 
 `npm start`
 
-<br>
+### License
 
-##### If you're using a GitHub webhook for continuous deployment to Glitch:
-
-Create remote branch inside the container using `git remote add origin {url}`.
-
-Set up a GitHub webhook to hit `/git` with a secure signature of your secret.
-
-Set `SECRET` to your secret inside `.env`
+MIT.
