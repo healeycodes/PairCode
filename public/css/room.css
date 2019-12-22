@@ -8,7 +8,7 @@ html {
   height: 100%;
   width: 100%;
   position: relative;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Source Code Pro", monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -19,7 +19,7 @@ html {
 }
 
 #live-frame {
-  height: 90%;
+  height: 95%;
   width: 74.5%;
   float: right;
   border: none;
@@ -30,7 +30,6 @@ section {
   height: 33.3%;
   position: absolute;
   width: 24.75%;
-  font-family: 'Source Code Pro', monospace;
 }
 
 textarea {
@@ -55,7 +54,7 @@ textarea {
 }
 
 #data {
-  height: 10%;
+  height: 5%;
   width: 74.5%;
   float: right;
   padding: 0.25%;

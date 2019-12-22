@@ -1,5 +1,5 @@
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #2f4f4f;
@@ -34,7 +34,8 @@ p {
 
 .heading {
   font-size: 6em;
-  font-family: 'Permanent Marker', cursive;
+  font-family: "Permanent Marker", cursive;
+  text-shadow: 2px 2px 0 #bcbcbc, 4px 4px 0 #9c9c9c;
 }
 
 .heading {
@@ -58,11 +59,11 @@ p {
 .splash-img {
   border-radius: 5px;
   max-width: 90%;
-  opacity: .75;
+  opacity: 0.75;
 }
 
 .splash-img:hover {
-  opacity: .9;
+  opacity: 0.9;
 }
 
 .create-room-btn {

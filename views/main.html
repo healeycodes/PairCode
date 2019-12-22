@@ -1,54 +1,95 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>PairCode</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="PairCode" />
-    <meta name="twitter:description" content="CodePen except smaller and faster. Low latency pair programming." />
-    <meta name="twitter:image" content="https://healeycodes.github.io/assets/paircode-twitter-card.png" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Permanent+Marker&display=swap" rel="stylesheet">
-    <link async rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
-    <link async rel="stylesheet" type="text/css" href="/css/main.css">
-</head>
-<body>
+    <meta
+      name="twitter:description"
+      content="CodePen except smaller and faster. Low latency pair programming."
+    />
+    <meta
+      name="twitter:image"
+      content="https://healeycodes.github.io/assets/paircode-twitter-card.png"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans|Permanent+Marker&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      async
+      rel="stylesheet"
+      type="text/css"
+      href="/css/bootstrap.min.css"
+    />
+    <link async rel="stylesheet" type="text/css" href="/css/main.css" />
+  </head>
+  <body>
     <div class="github-button-con">
-      <a class="github-button" href="https://github.com/healeycodes" data-size="large" aria-label="Follow @healeycodes on GitHub">Follow @healeycodes</a>
-      <a class="github-button" href="https://github.com/healeycodes/PairCode" data-icon="octicon-star" data-size="large" aria-label="Star healeycodes/PairCode on GitHub">Star</a>
-    </div>
+      <a
+        class="github-button"
+        href="https://github.com/healeycodes"
+        data-size="large"
+        aria-label="Follow @healeycodes on GitHub"
+        >Follow @healeycodes</a
+      >
+      <a
+        class="github-button"
+        href="https://github.com/healeycodes/PairCode"
+        data-icon="octicon-star"
+        data-size="large"
+        aria-label="Star healeycodes/PairCode on GitHub"
+        >Star</a
+      >
     </div>
     <div class="main">
-        <div class="centered">
-            <div class="section-top">
-                <%if (popup) {%>
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                    <strong>Error:</strong>
-                    <%-popup-%>
-                    <button type="button" class="close" data-dismiss="alert">
-                        <span>&times;</span>
-                    </button>
-                </div>
-                <%}%>
-              <h1 class="heading">PairCode</h1>
-              <p>HTML/CSS/JS sandbox with real time collaboration!</p>
-              <p>Instant preview updates ~ <b>create</b> and <b>fork</b> Code Rooms.</p>
-              <p>Low latency remote pair programming powered by
-                <a class="link" href="https://socket.io/">Socket.IO.</a>
-              </p>
-              <p>Open source project. Check out the
-                <a class="link" href="https://github.com/healeycodes/paircode">GitHub repo</a> and raise an issue!</p>
-              <button type="button" class="btn btn-lg btn-light create-room-btn" onclick="window.location.href = '/new-room'">Create Room</button>
+      <div class="centered">
+        <div class="section-top">
+          <%if (popup) {%>
+          <div
+            class="alert alert-warning alert-dismissible fade show"
+            role="alert"
+          >
+            <strong>Error:</strong>
+            <%-popup-%>
+            <button type="button" class="close" data-dismiss="alert">
+              <span>&times;</span>
+            </button>
           </div>
-          <div class="section-bottom">
-              <a href="/demo/abstriangulation">
-                <img class="splash-img img-fluid" src="/img/preview.jpg" title="Abstriangulation by Akimitsu Hamamuro">
-              </a>
-          </div>
+          <%}%>
+          <h1 class="heading">PairCode</h1>
+          <p>
+            Pair programming sandbox for HTML/CSS/JS. <b>Create</b> and
+            <b>Fork</b> Code Rooms.
+          </p>
+          <p>
+            Open source project. Raise an issue on the
+            <a class="link" href="https://github.com/healeycodes/paircode"
+              >GitHub repo</a
+            >.
+          </p>
+          <button
+            type="button"
+            class="btn btn-lg btn-light create-room-btn"
+            onclick="window.location.href = '/new-room'"
+          >
+            Create Room
+          </button>
+        </div>
+        <div class="section-bottom">
+          <a href="/demo/abstriangulation">
+            <img
+              class="splash-img img-fluid"
+              src="/img/preview.jpg"
+              title="Abstriangulation by Akimitsu Hamamuro"
+            />
+          </a>
+        </div>
+      </div>
     </div>
-  </div>
-  <script src="/js/jquery.min.js"></script>
-  <script async src="/js/bootstrap.bundle.min.js"></script>
-  <script async defer src="https://buttons.github.io/buttons.js"></script>
-</body>
-
+    <script src="/js/jquery.min.js"></script>
+    <script async src="/js/bootstrap.bundle.min.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </body>
 </html>

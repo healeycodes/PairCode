@@ -1,16 +1,16 @@
 module.exports = {
-    html: `<!-- Abstriangulation
-    BY Akimitsu Hamamuro !-->
+  html: `<!-- Abstriangulation by Akimitsu Hamamuro
+    (MIT License) Akimitsu Hamamuro !-->
 
 <canvas id='c'></canvas>`,
-    css: `body {
+  css: `body {
         font-family: sans-serif;
         padding: 0;
         margin: 0;
           background-color: #eff1ea;
           overflow: hidden;
       }`,
-    js: `/**
+  js: `/**
     * requestAnimationFrame
     */
    var requestAnimationFrame = (function(){
@@ -486,4 +486,4 @@ module.exports = {
    
    })();
    `
-}
+};
