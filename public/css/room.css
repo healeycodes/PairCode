@@ -13,104 +13,92 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.share-link {
+  float: left;
+  width: 25%;
+}
+
+.top-bar {
+  display: flex;
+}
+
+.top-item {
+  flex-grow: 1;
+  margin: auto;
+  text-align: center;
+}
+
 #user-code {
+  height: calc(100% - 38px);
   width: 25%;
   float: left;
+  display: flex;
+  flex-direction: column;
 }
 
 #live-frame {
-  height: 95%;
-  width: 74.5%;
+  height: calc(100% - 38px);
+  width: 75%;
   float: right;
   border: none;
 }
 
 section {
-  float: right;
-  height: 33.3%;
-  position: absolute;
-  width: 24.75%;
+  height: 100%;
+  width: 100%;
 }
 
 textarea {
-  height: 97.5%;
+  height: 100%;
   width: 100%;
   resize: none;
   background-color: #2f4f4f;
   color: #f0f8ff;
-  padding: 1%;
-}
-
-#js {
-  bottom: 0;
-}
-
-#css {
-  top: 33.3%;
-}
-
-#html {
-  top: 0;
+  padding: 2px;
 }
 
 #data {
-  height: 5%;
   width: 74.5%;
   float: right;
-  padding: 0.25%;
 }
 
 #last-saved-con {
-  text-align: right;
-}
-
-#last-saved {
-  line-height: 35px;
-}
-
-#fork-btn-con {
   text-align: center;
-}
-
-#ping {
-  float: right;
-  line-height: 35px;
-  margin-right: 5px;
-}
-
-.row {
-  margin-left: auto;
-  margin-right: auto;
 }
 
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   color: #f0f8ff;
-  padding: 1%;
+  font-size: 2em;
+  padding-left: 10px;
 }
 
 ::-moz-placeholder {
   /* Firefox 19+ */
   color: #f0f8ff;
-  padding: 1%;
+  font-size: 2em;
+  padding-left: 10px;
 }
 
 :-ms-input-placeholder {
   /* IE 10+ */
   color: #f0f8ff;
-  padding: 1%;
+  font-size: 2em;
+  padding-left: 10px;
 }
 
 :-moz-placeholder {
   /* Firefox 18- */
   color: #f0f8ff;
-  padding: 1%;
+  font-size: 2em;
+  padding-left: 10px;
 }
 
 ::placeholder {
   /* Generic */
   color: #f0f8ff;
-  padding: 1%;
+  font-size: 2em;
+  padding-left: 10px;
 }
 
 div.col-sm {

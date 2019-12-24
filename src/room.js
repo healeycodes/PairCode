@@ -1,149 +1,117 @@
+const roomId = document.querySelector("#data").getAttribute("data-roomid");
+let userId = ""; // Set when connecting to Socket.IO
+
 const page = {
-  html: "",
-  css: "",
-  js: "",
-  getPage: () => {
-    return {
-      html: page.html,
-      css: page.css,
-      js: page.js
-    };
-  }
+  html: null,
+  css: null,
+  js: null
 };
 
-// Set when Socket.IO connects
-let userId = '';
-
-// Update iframe
-const cycleFrame = () => {
+const updateFrame = () => {
   const liveFrame = document.getElementById("live-frame");
   const newContent = `${page.html}<style>${page.css}</style><script>${page.js}</script>`;
   srcDoc.set(liveFrame, newContent);
 };
 
-// Update user code
-const setUserCode = msg => {
-  document.querySelector("#html textarea").value = msg.html;
-  document.querySelector("#css textarea").value = msg.css;
-  document.querySelector("#js textarea").value = msg.js;
+const updateUserCode = () => {
+  document.querySelector("#html textarea").value = page.html;
+  document.querySelector("#css textarea").value = page.css;
+  document.querySelector("#js textarea").value = page.js;
 };
 
-const checkIfNew = msg => {
-  let doCycle = false;
-  if (msg.html != page.html) {
-    page.html = msg.html;
-    doCycle = true;
-  }
-  if (msg.css != page.css) {
-    page.css = msg.css;
-    doCycle = true;
-  }
-  if (msg.js != page.js) {
-    page.js = msg.js;
-    doCycle = true;
-  }
-  if (doCycle) {
-    setUserCode(msg);
-    cycleFrame();
-  }
+const socket = io();
+socket.emit("join-room", {
+  roomId: roomId
+});
+socket.on("connect", () => {
+  userId = socket.id;
+});
+socket.on("update", msg => {
+  page.html = msg.html;
+  page.css = msg.css;
+  page.js = msg.js;
+  updateFrame();
+  updateUserCode();
+});
+socket.on("_pong", msg => {
+  document.querySelector("#ping").innerText = `${
+    msg.roomCount
+  } in room / ping: ${Date.now() - msg.time}ms`;
+});
+
+const saveCode = roomId => {
+  fetch(`/room/${roomId}/save`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      html: page.html,
+      css: page.css,
+      js: page.js
+    })
+  })
+    .then(res => res.text())
+    .then(
+      text =>
+        (document.querySelector("#last-saved").innerText = `Saved @ ${text}`)
+    );
 };
 
-window.addEventListener("DOMContentLoaded", () => {
-  // Update to the last save point
-  const liveFrame = document.getElementById("live-frame");
-  const oldContent = document.querySelector("#data").getAttribute("data-page");
-  srcDoc.set(liveFrame, oldContent); // external lib
+const handleInput = () => {
+  const html = document.querySelector("#html textarea").value;
+  const css = document.querySelector("#css textarea").value;
+  const js = document.querySelector("#js textarea").value;
 
-  const roomId = document.querySelector("#data").getAttribute("data-roomid");
+  if (html == page.html && css == page.css && js == page.js) {
+    return;
+  }
 
-  // Fork button
-  document.querySelector("#fork-btn").onclick = () =>
-    (window.location = `/room/${roomId}/fork`);
+  page.html = html;
+  page.css = css;
+  page.js = js;
 
-  const socket = io();
-  socket.emit("join-room", {
+  updateFrame();
+
+  // Share our data to the room
+  socket.emit("update", {
+    data: {
+      id: userId,
+      html: html,
+      css: css,
+      js: js
+    },
     roomId: roomId
   });
-  socket.on("connect", () => {
-    userId = socket.id;
+
+  saveCode(roomId);
+};
+
+window.addEventListener("change", handleInput, false);
+window.addEventListener("keypress", handleInput, false);
+window.addEventListener("input", handleInput, false);
+window.addEventListener("textInput", handleInput, false);
+window.addEventListener("paste", handleInput, false);
+
+const ping = () => {
+  socket.emit("_ping", {
+    time: Date.now(),
+    roomId: roomId,
+    roomCount: null
   });
-  socket.on("update", msg => {
-    checkIfNew(msg);
-  });
-  socket.on("_pong", msg => {
-    document.querySelector("#ping").innerText = `${
-      msg.roomCount
-    } in room / ping: ${Date.now() - msg.time}ms`;
-  });
+  setTimeout(ping, 2000);
+};
+ping();
 
-  const handleInput = () => {
-    const html = document.querySelector("#html textarea").value;
-    const css = document.querySelector("#css textarea").value;
-    const js = document.querySelector("#js textarea").value;
+// Home button
+document.querySelector("#home-btn").onclick = () => window.location.assign("/");
 
-    if (html == page.html && css == page.css && js == page.js) {
-      return;
-    }
+// Fork button
+document.querySelector("#fork-btn").onclick = () =>
+  window.location.assign(`/room/${roomId}/fork`);
 
-    page.html = html;
-    page.css = css;
-    page.js = js;
+// Delete button
+document.querySelector("#delete-btn").onclick = () =>
+  window.location.assign(`/room/${roomId}/delete`);
 
-    cycleFrame();
-
-    // Share our data to the room
-    socket.emit("update", {
-      data: {
-        id: userId,
-        html: html,
-        css: css,
-        js: js
-      },
-      roomId: roomId
-    });
-
-    // Save!
-    fetch(`/room/${roomId}/save`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        html: html,
-        css: css,
-        js: js
-      })
-    })
-      .then(res => res.text())
-      .then(
-        text =>
-          (document.querySelector(
-            "#last-saved"
-          ).innerText = `Autosaved @ ${text}`)
-      );
-  };
-
-  window.addEventListener("change", handleInput, false);
-  window.addEventListener("keypress", handleInput, false);
-  window.addEventListener("input", handleInput, false);
-  window.addEventListener("textInput", handleInput, false);
-  window.addEventListener("paste", handleInput, false);
-
-  // Delete button
-  document.querySelector("#delete-btn").onclick = () =>
-    window.location.assign(`/room/${roomId}/delete`);
-
-  // Home button
-  document.querySelector("#home-btn").onclick = () =>
-    window.location.assign("/");
-
-  const ping = () => {
-    socket.emit("_ping", {
-      time: Date.now(),
-      roomId: roomId,
-      roomCount: null
-    });
-    setTimeout(ping, 2000);
-  };
-  ping();
-});
+handleInput();
