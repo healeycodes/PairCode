@@ -1,18 +1,10 @@
 module.exports = function(app, models) {
-  const demos = require("./demos");
-  const rndID = require("./friendlyRandom").get;
-  const url = process.env.URL;
+  const demos = require("../demos");
+  const rndID = require("../friendlyRandom").get;
   const errorPage = (res, error = "Unspecified error.") =>
     res.render("main.html", {
       popup: error
     });
-
-  // Home
-  app.get("/", (req, res) =>
-    res.render("main.html", {
-      popup: ""
-    })
-  );
 
   // Create room
   app.get("/new-room", async (req, res) => {
@@ -50,7 +42,7 @@ module.exports = function(app, models) {
       res.render("room.html", {
         title: "PairCode",
         roomId: req.params.roomId,
-        roomLink: `${url}/room/${req.params.roomId}`,
+        roomRoute: `/room/${req.params.roomId}`,
         html: room.html,
         css: room.css,
         js: room.js,

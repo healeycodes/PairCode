@@ -13,13 +13,11 @@ app.engine("html", ejs);
 app.set("view engine", "html");
 app.use(bodyParser.json());
 
-// Routes
+// Controllers
 const models = require("./models");
-require("./routes")(app, models);
-
-// Socket.IO
-const io = require("socket.io")(http);
-require("./io").setupSocketIO(io);
+require("./controllers/rooms")(app, models);
+require("./controllers/home")(app, models);
+require("./controllers/socketio")(http);
 
 module.exports = {
   app: app,

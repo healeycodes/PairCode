@@ -1,6 +1,8 @@
 module.exports = {
-  html: `<!-- Abstriangulation by Akimitsu Hamamuro
-    (MIT License) Akimitsu Hamamuro !-->
+  html: `<!-- Abstriangulation by 
+     Akimitsu Hamamuro
+     (MIT License)
+     Akimitsu Hamamuro !-->
 
 <canvas id='c'></canvas>`,
   css: `body {
