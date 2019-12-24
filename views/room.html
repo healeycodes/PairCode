@@ -14,31 +14,29 @@
     <script src="/js/jquery.min.js"></script>
     <script src="/js/socket.io.js"></script>
     <script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/room.js"></script>
   </head>
 
   <body>
-    <div id="data" data-roomid="<%-roomId-%>" data-page="<%-srcdoc-%>">
-      <div class="row">
-        <div class="col-sm">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text">Invite</span>
-            </div>
-            <input
-              type="text"
-              class="form-control form-control-sm"
-              value="<%-roomLink-%>"
-              onclick="this.select();"
-            />
-          </div>
+    <div class="input-group share-link">
+      <div class="input-group-prepend">
+        <span class="input-group-text">Invite</span>
+      </div>
+      <input
+        type="text"
+        class="form-control"
+        value="<%-roomLink-%>"
+        onclick="this.select();"
+      />
+    </div>
+    <div id="data" data-roomid="<%-roomId-%>">
+      <div class="top-bar">
+        <div class="top-item">
+          <span id="last-saved"></span>
         </div>
-        <div class="col-sm">
-          <div id="last-saved-con">
-            <span id="last-saved"></span>
-          </div>
+        <div class="top-item">
+          <span id="ping"></span>
         </div>
-        <div id="fork-btn-con" class="col-sm">
+        <div class="top-item">
           <span class="dropdown">
             <button
               class="btn btn-dark dropdown-toggle"
@@ -59,7 +57,6 @@
               </button>
             </div>
           </span>
-          <span id="ping"></span>
         </div>
       </div>
     </div>
@@ -75,5 +72,6 @@
         <textarea placeholder="JS"><%-js-%></textarea>
       </section>
     </div>
+    <script src="/js/room.js"></script>
   </body>
 </html>
