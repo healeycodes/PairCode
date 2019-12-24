@@ -114,4 +114,8 @@ document.querySelector("#fork-btn").onclick = () =>
 document.querySelector("#delete-btn").onclick = () =>
   window.location.assign(`/room/${roomId}/delete`);
 
+// Share link
+const shareLink = document.querySelector(".share-link input");
+shareLink.value = `${window.location.protocol}//${window.location.hostname}${shareLink.value}`;
+
 handleInput();
