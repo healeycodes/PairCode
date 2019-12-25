@@ -22,7 +22,7 @@ Back end: Node.js, Express with EJS templates, socket.io, SQLite via Sequelize.
 
 Front end: HTML5/CSS3, JavaScript(ES6+), Webpack w/ Babel.
 
-Tested with: Jest, SuperTest.
+Tested with: Jest.
 
 <br>
 
@@ -30,13 +30,13 @@ Tested with: Jest, SuperTest.
 
 `npm install`
 
-`npm run-script build`
-
-Inside `.env` set `URL` to the location on the web,. e.g., `localhost:3000`
+`npm run-script build` 
 
 <br>
 
 ### Tests
+
+API tested by Jest.
 
 `npm test`
 
@@ -44,6 +44,9 @@ Inside `.env` set `URL` to the location on the web,. e.g., `localhost:3000`
 
 ### Run
 
+Pages and socket.io run by Express.
+
+Set the enviroment variable `PORT` to host on a different port. Default is `3000`.
 `npm start`
 
 ### License
