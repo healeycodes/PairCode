@@ -47,6 +47,7 @@ API tested by Jest.
 Pages and socket.io run by Express.
 
 Set the enviroment variable `PORT` to host on a different port. Default is `3000`.
+
 `npm start`
 
 ### License
