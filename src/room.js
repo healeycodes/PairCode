@@ -1,3 +1,6 @@
+const io = require('../lib/socket.io');
+const srcDoc = require('../lib/srcdoc-polyfill.min.js');
+
 const roomId = document.querySelector("#data").getAttribute("data-roomid");
 let userId = ""; // Set when connecting to Socket.IO
 
