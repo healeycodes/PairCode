@@ -28,6 +28,8 @@ Tested with: Jest.
 
 ### Setup
 
+Webpack builds the client code.
+
 `npm install`
 
 `npm run-script build` 
