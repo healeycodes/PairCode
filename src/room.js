@@ -57,7 +57,7 @@ const saveCode = roomId => {
     .then(res => res.text())
     .then(
       text =>
-        (document.querySelector("#last-saved").innerText = `Saved @ ${text}`)
+        (document.querySelector("#last-saved").innerText = `Autosaved @ ${text}`)
     );
 };
 
