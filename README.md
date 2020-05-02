@@ -1,5 +1,5 @@
 
-## PairCode ~ https://paircode.glitch.me
+## PairCode
 
 A CodePen clone (but _faster_). Mostly because I love __pair programming__.
 
